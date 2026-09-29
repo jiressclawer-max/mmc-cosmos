@@ -7,11 +7,39 @@
     <meta name="keywords" content="Maître Morazandry, MMC, cosmologie, géophysique, philosophie, sagesse malgache, climat cosmique">
     <meta property="og:title" content="MMC - Maître Morazandry Cosmos">
     <meta property="og:description" content="Découvrez la vision de Maître Morazandry sur la formation de toutes choses.">
-    <meta property="og:image" content="images/og-image.jpg">
+    <meta property="og:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
     <title>MMC - Maître Morazandry Cosmos</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<meta name="google-site-verification" content="6ykPJbggtJNhB-pc6BRE4VA4tt-X02X2fy1pJTt4bRk" />
+    <meta name="google-site-verification" content="6ykPJbggtJNhB-pc6BRE4VA4tt-X02X2fy1pJTt4bRk" />
+
+    <style>
+        /* Optimisation des images */
+        .logo-img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+        .portrait-img {
+            width: 280px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid rgba(212, 163, 115, 0.2);
+        }
+        .portrait-placeholder {
+            width: 280px;
+            height: 320px;
+            background: linear-gradient(135deg, #1a1418, #2a1f1a);
+            border: 2px solid rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #a89078;
+        }
+    </style>
 </head>
 <body>
 
@@ -31,8 +59,7 @@
             <div class="container header-inner">
                 <div class="logo">
                     <a href="index.html" aria-label="Accueil MMC">
-                        <!-- Intégration de l'image de votre logo -->
-                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img">
+                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img" width="180" height="60" loading="eager" fetchpriority="high" decoding="async">
                     </a>
                 </div>
 
@@ -169,7 +196,9 @@
                         <a href="biographie.html" class="btn btn-primary">📖 Lire la biographie complète</a>
                     </div>
                     <div class="presentation-image">
-                        <div class="portrait-placeholder">
+                        <!-- Image avec fallback automatique -->
+                        <img src="images/portrait.jpg" alt="Portrait de Maître Morazandry Cosmos" class="portrait-img" width="280" height="320" loading="lazy" decoding="async" onerror="this.style.display='none'; document.getElementById('portrait-fallback').style.display='flex';">
+                        <div id="portrait-fallback" class="portrait-placeholder" style="display:none;">
                             <span>🌌</span>
                             <p>Portrait de MMC</p>
                         </div>
@@ -222,14 +251,13 @@
                         <li><a href="#">📘 Facebook</a></li>
                         <li><a href="#">📸 Instagram</a></li>
                         <li><a href="#">🐦 Twitter</a></li>
-                        <a href="sitemap.html">Plan du site</a>
                     </ul>
                     <p class="footer-small">📧 contact@mmc-cosmos.com</p>
                 </div>
             </div>
             <div class="container footer-bottom">
                 <p>© 2026 MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
-                <p><a href="#">Accueil</a> · <a href="sitemap.xml">Plan du site</a></p>
+                <p><a href="index.html">Accueil</a> · <a href="sitemap.html">Plan du site</a> · <a href="sitemap.xml">Sitemap XML</a></p>
             </div>
         </footer>
 
