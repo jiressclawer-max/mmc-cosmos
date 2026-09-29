@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Historique de vos commandes MMC - Maître Morazandry Cosmos. Suivez l'état de vos achats de livres, soins naturels et remèdes.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Mes Commandes - MMC - Maître Morazandry Cosmos</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== LISTE DES COMMANDES ===== */
+        .orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .order-card {
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .order-card:hover {
+            border-color: rgba(212, 163, 115, 0.3);
+        }
+
+        /* En-tête de commande */
+        .order-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 24px;
+            background: rgba(20, 16, 14, 0.6);
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .order-header:hover {
+            background: rgba(212, 163, 115, 0.05);
+        }
+
+        .order-ref {
+            font-family: 'Courier New', monospace;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #d4a373;
+            letter-spacing: 0.5px;
+        }
+
+        .order-date {
+            font-size: 0.85rem;
+            color: #8a7560;
+            margin-top: 2px;
+        }
+
+        .order-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .order-total {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #d4a373;
+        }
+
+        /* Badges de statut */
+        .order-status {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .status-en_attente {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-payee {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-expediee {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .status-livree {
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .status-annulee {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .order-toggle-icon {
+            font-size: 1.2rem;
+            color: #d4a373;
+            transition: transform 0.3s ease;
+        }
+
+        .order-card.expanded .order-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Détail de commande */
+        .order-detail {
+            display: none;
+            padding: 24px;
+        }
+
+        .order-card.expanded .order-detail {
+            display: block;
+        }
+
+        .order-detail-section {
+            margin-bottom: 24px;
+        }
+
+        .order-detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .order-detail-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: #d4a373;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+        }
+
+        /* Articles commandés */
+        .order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .order-item {
+            display: grid;
+            grid-template-columns: 50px 1fr auto auto;
+            gap: 12px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.05);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #1a1418, #2a1f1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #d4a373;
+            overflow: hidden;
+        }
+
+        .order-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .order-item-info h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: #f5e7d9;
+            margin: 0 0 2px;
+        }
+
+        .order-item-info p {
+            font-size: 0.75rem;
+            color: #8a7560;
+            margin: 0;
+        }
+
+        .order-item-qty {
+            font-size: 0.85rem;
+            color: #a89078;
+            text-align: center;
+            min-width: 40px;
+        }
+
+        .order-item-price {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #d4a373;
+            text-align: right;
+            min-width: 90px;
+        }
+
+        /* Informations client */
+        .order-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .info-block {
+            background: rgba(12, 10, 10, 0.4);
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 163, 115, 0.08);
+        }
+
+        .info-block-label {
+            font-size: 0.7rem;
+            color: #8a7560;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .info-block-value {
+            font-size: 0.9rem;
+            color: #f0e6d8;
+            line-height: 1.5;
+        }
+
+        /* Récapitulatif des totaux */
+        .order-totals {
+            background: rgba(12, 10, 10, 0.4);
+            border-radius: 10px;
+            padding: 16px;
+            border: 1px solid rgba(212, 163, 115, 0.08);
+        }
+
+        .order-total-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.9rem;
+            color: #bfaa95;
+        }
+
+        .order-total-line.total {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #d4a373;
+            padding-top: 10px;
+            margin-top: 8px;
+            border-top: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        /* Actions */
+        .order-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(212, 163, 115, 0.1);
+        }
+
+        .order-actions .btn {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
+
+        /* Filtres */
+        .orders-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding: 20px;
+            background: rgba(30, 26, 23, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .orders-filters input,
+        .orders-filters select {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(12, 10, 10, 0.8);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f0e6d8;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .orders-filters input:focus,
+        .orders-filters select:focus {
+            outline: none;
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+        }
+
+        /* Aucune commande */
+        .no-orders {
+            text-align: center;
+            padding: 80px 20px;
+            color: #8a7560;
+        }
+
+        .no-orders-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .no-orders h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: #d4a373;
+            margin-bottom: 12px;
+        }
+
+        .no-orders p {
+            margin-bottom: 24px;
+        }
+
+        /* Résumé stats */
+        .orders-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(30, 26, 23, 0.6);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #8a7560;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #d4a373;
+        }
+
+        /* Toast */
+        .mmc-toast {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(30, 26, 23, 0.98);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 12px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f0e6d8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .mmc-toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mmc-toast-success { border-color: rgba(34, 197, 94, 0.4); }
+        .mmc-toast-error { border-color: rgba(239, 68, 68, 0.4); }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .order-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-item {
+                grid-template-columns: 40px 1fr;
+                gap: 8px;
+            }
+
+            .order-item-image {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .order-item-qty,
+            .order-item-price {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .order-header {
+                padding: 14px 16px;
+            }
+
+            .order-detail {
+                padding: 16px;
+            }
+
+            .order-ref {
+                font-size: 0.9rem;
+            }
+
+            .order-meta {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== FOND COSMIQUE ===== -->
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+        <div class="exploration-glow"></div>
+    </div>
+
+    <!-- ===== CONTENU ===== -->
+    <div class="content-overlay">
+
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="logo">
+                    <a href="index.html" aria-label="Accueil MMC">
+                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img"
+                             width="180" height="60" loading="eager" fetchpriority="high" decoding="async"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="logo-text" style="display:none;">
+                            <span class="logo-title">MMC</span>
+                            <span class="logo-sub">Maître Morazandry Cosmos</span>
+                        </span>
+                    </a>
+                </div>
+
+                <nav class="main-nav" aria-label="Navigation principale">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="biographie.html" class="nav-link">Biographie</a>
+                    <a href="themes/index.html" class="nav-link">Thèmes</a>
+                    <a href="articles.html" class="nav-link">Articles</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="boutique.html" class="nav-link">Boutique</a>
+                    <a href="conferences.html" class="nav-link">Conférences</a>
+                    <a href="consultations.html" class="nav-link">Consultations</a>
+                    <a href="panier.html" class="nav-link cart-link" aria-label="Panier">🛒 <span class="cart-count">0</span></a>
+                </nav>
+
+                <button class="mobile-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Accueil</a>
+                <a href="biographie.html">Biographie</a>
+                <a href="themes/index.html">Thèmes du jour</a>
+                <a href="articles.html">Articles</a>
+                <a href="forum.html">Forum</a>
+                <a href="boutique.html">Boutique</a>
+                <a href="conferences.html">Conférences</a>
+                <a href="consultations.html">Consultations</a>
+                <a href="panier.html">Panier</a>
+            </div>
+        </header>
+
+        <!-- ===== BANNIÈRE ===== -->
+        <section class="page-banner">
+            <div class="container">
+                <h1 class="page-title">📦 Mes Commandes</h1>
+                <p class="page-subtitle">Suivez l'état de vos achats et consultez votre historique</p>
+            </div>
+        </section>
+
+        <!-- ===== CONTENU ===== -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+
+                <!-- Statistiques -->
+                <div id="orders-stats" class="orders-stats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-label">Total commandes</div>
+                        <div class="stat-value" id="stat-total">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">En attente</div>
+                        <div class="stat-value" id="stat-pending">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Payées</div>
+                        <div class="stat-value" id="stat-paid">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Livrées</div>
+                        <div class="stat-value" id="stat-delivered">0</div>
+                    </div>
+                </div>
+
+                <!-- Filtres -->
+                <div class="orders-filters" id="orders-filters" style="display: none;">
+                    <input type="text" id="orders-search" placeholder="🔍 Rechercher par référence..." aria-label="Rechercher une commande">
+                    <select id="orders-status" aria-label="Filtrer par statut">
+                        <option value="">📂 Tous les statuts</option>
+                        <option value="en_attente">⏳ En attente</option>
+                        <option value="payee">✅ Payée</option>
+                        <option value="expediee">📦 Expédiée</option>
+                        <option value="livree">📬 Livrée</option>
+                        <option value="annulee">❌ Annulée</option>
+                    </select>
+                </div>
+
+                <!-- Liste des commandes -->
+                <div id="orders-list" class="orders-list"></div>
+
+                <!-- Aucune commande -->
+                <div id="no-orders" class="no-orders" style="display: none;">
+                    <div class="no-orders-icon">📦</div>
+                    <h2>Aucune commande pour le moment</h2>
+                    <p>Vous n'avez pas encore passé de commande. Découvrez nos produits dans la boutique.</p>
+                    <a href="boutique.html" class="btn btn-primary">🛍️ Aller à la boutique</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <h4>MMC</h4>
+                    <p>Maître Morazandry Cosmos</p>
+                    <p class="footer-sub">Penseur, Astronome et Attractionniste Malagasy</p>
+                    <p class="footer-small">26 ans de recherche à travers Madagascar</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="biographie.html">Biographie</a></li>
+                        <li><a href="themes/index.html">Thèmes du jour</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="conferences.html">Conférences</a></li>
+                        <li><a href="consultations.html">Consultations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Mon compte</h4>
+                    <ul>
+                        <li><a href="connexion.html">Connexion</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                        <li><a href="mes-commandes.html">Mes commandes</a></li>
+                        <li><a href="mes-inscriptions.html">Mes inscriptions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                        <li><a href="#" aria-label="Instagram">📸 Instagram</a></li>
+                        <li><a href="#" aria-label="Twitter">🐦 Twitter</a></li>
+                    </ul>
+                    <p class="footer-small">📧 contact@mmc-cosmos.com</p>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p>© <span class="current-year">2026</span> MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
+                <p>
+                    <a href="index.html">Accueil</a> ·
+                    <a href="sitemap.html">Plan du site</a> ·
+                    <a href="sitemap.xml">Sitemap XML</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/script.js"></script>
+
+    <!-- ===== SCRIPT DES COMMANDES ===== -->
+    <script>
+        const ORDERS_KEY = 'mmc_orders';
+        const CART_KEY = 'mmc_cart';
+
+        /* ================================================================
+           UTILITAIRES
+           ================================================================ */
+        function getOrders() {
+            try {
+                return JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveOrders(orders) {
+            localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+        }
+
+        function updateCartCounters() {
+            try {
+                const cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+                const total = cart.reduce((sum, item) => sum + item.quantite, 0);
+                document.querySelectorAll('.cart-count').forEach(el => {
+                    el.textContent = total;
+                    el.style.display = total > 0 ? 'inline-block' : 'none';
+                });
+            } catch (e) {}
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-FR').format(price) + ' Ar';
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
+        function getStatusLabel(status) {
+            const labels = {
+                'en_attente': '⏳ En attente',
+                'payee': '✅ Payée',
+                'expediee': '📦 Expédiée',
+                'livree': '📬 Livrée',
+                'annulee': '❌ Annulée'
+            };
+            return labels[status] || status;
+        }
+
+        function getPaymentLabel(payment) {
+            const labels = {
+                'manual': '💳 Paiement manuel',
+                'mvola': '📱 MVola',
+                'orange_money': '📱 Orange Money'
+            };
+            return labels[payment] || payment;
+        }
+
+        function showToast(message, type = 'success') {
+            document.querySelectorAll('.mmc-toast').forEach(t => t.remove());
+            const toast = document.createElement('div');
+            toast.className = 'mmc-toast mmc-toast-' + type;
+            toast.innerHTML = `<span>${type === 'success' ? '✅' : '❌'}</span><span>${escapeHtml(message)}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('visible'), 10);
+            setTimeout(() => {
+                toast.classList.remove('visible');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        /* ================================================================
+           STATISTIQUES
+           ================================================================ */
+        function updateStats(orders) {
+            const stats = {
+                total: orders.length,
+                pending: orders.filter(o => o.status === 'en_attente').length,
+                paid: orders.filter(o => o.status === 'payee').length,
+                delivered: orders.filter(o => o.status === 'livree').length
+            };
+
+            document.getElementById('stat-total').textContent = stats.total;
+            document.getElementById('stat-pending').textContent = stats.pending;
+            document.getElementById('stat-paid').textContent = stats.paid;
+            document.getElementById('stat-delivered').textContent = stats.delivered;
+        }
+
+        /* ================================================================
+           AFFICHAGE DES COMMANDES
+           ================================================================ */
+        function renderOrders(orders) {
+            const list = document.getElementById('orders-list');
+            const noOrders = document.getElementById('no-orders');
+            const statsEl = document.getElementById('orders-stats');
+            const filtersEl = document.getElementById('orders-filters');
+
+            if (orders.length === 0) {
+                list.innerHTML = '';
+                noOrders.style.display = 'block';
+                statsEl.style.display = 'none';
+                filtersEl.style.display = 'none';
+                return;
+            }
+
+            noOrders.style.display = 'none';
+            statsEl.style.display = 'grid';
+            filtersEl.style.display = 'flex';
+
+            // Trier par date décroissante
+            const sorted = orders.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            list.innerHTML = '';
+
+            sorted.forEach(order => {
+                list.appendChild(createOrderCard(order));
+            });
+        }
+
+        function createOrderCard(order) {
+            const card = document.createElement('div');
+            card.className = 'order-card';
+            card.setAttribute('data-ref', order.reference.toLowerCase());
+            card.setAttribute('data-status', order.status || 'en_attente');
+
+            const status = order.status || 'en_attente';
+
+            // Articles
+            const itemsHtml = (order.items || []).map(item => {
+                const imageHtml = item.image
+                    ? `<img src="${item.image}" alt="${escapeHtml(item.nom)}" onerror="this.style.display='none'; this.parentElement.textContent='📦';">`
+                    : '📦';
+
+                return `
+                    <div class="order-item">
+                        <div class="order-item-image">${imageHtml}</div>
+                        <div class="order-item-info">
+                            <h4>${escapeHtml(item.nom)}</h4>
+                            <p>${escapeHtml(item.unite || '')}</p>
+                        </div>
+                        <div class="order-item-qty">×${item.quantite}</div>
+                        <div class="order-item-price">${formatPrice(item.prix * item.quantite)}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // Client
+            const client = order.client || {};
+
+            card.innerHTML = `
+                <div class="order-header" onclick="toggleOrder(this)">
+                    <div>
+                        <div class="order-ref">📦 ${escapeHtml(order.reference)}</div>
+                        <div class="order-date">${formatDate(order.date)}</div>
+                    </div>
+                    <div class="order-meta">
+                        <span class="order-total">${formatPrice(order.total)}</span>
+                        <span class="order-status status-${status}">${getStatusLabel(status)}</span>
+                        <span class="order-toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="order-detail">
+
+                    <div class="order-detail-section">
+                        <h3>🛍️ Articles commandés (${(order.items || []).length})</h3>
+                        <div class="order-items">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+
+                    <div class="order-detail-section">
+                        <h3>📍 Informations de livraison</h3>
+                        <div class="order-info-grid">
+                            <div class="info-block">
+                                <div class="info-block-label">👤 Client</div>
+                                <div class="info-block-value">
+                                    ${escapeHtml(client.name || 'N/A')}<br>
+                                    ${escapeHtml(client.email || '')}<br>
+                                    ${escapeHtml(client.phone || '')}
+                                </div>
+                            </div>
+                            <div class="info-block">
+                                <div class="info-block-label">📬 Adresse</div>
+                                <div class="info-block-value">
+                                    ${escapeHtml(client.address || 'N/A')}<br>
+                                    ${escapeHtml(client.city || '')}
+                                </div>
+                            </div>
+                            <div class="info-block">
+                                <div class="info-block-label">💳 Paiement</div>
+                                <div class="info-block-value">
+                                    ${getPaymentLabel(order.payment)}
+                                </div>
+                            </div>
+                            ${client.notes ? `
+                            <div class="info-block">
+                                <div class="info-block-label">📝 Notes</div>
+                                <div class="info-block-value">
+                                    ${escapeHtml(client.notes)}
+                                </div>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+
+                    <div class="order-detail-section">
+                        <h3>💰 Récapitulatif</h3>
+                        <div class="order-totals">
+                            <div class="order-total-line">
+                                <span>Sous-total</span>
+                                <span>${formatPrice(order.subtotal)}</span>
+                            </div>
+                            <div class="order-total-line">
+                                <span>Livraison</span>
+                                <span>${order.shipping > 0 ? formatPrice(order.shipping) : 'Gratuite'}</span>
+                            </div>
+                            <div class="order-total-line total">
+                                <span>Total</span>
+                                <span>${formatPrice(order.total)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-actions">
+                        ${status === 'en_attente' ? `
+                            <button class="btn btn-secondary" onclick="cancelOrder('${order.reference}')">
+                                ❌ Annuler la commande
+                            </button>
+                        ` : ''}
+                        ${status === 'livree' ? `
+                            <button class="btn btn-primary" onclick="markReceived('${order.reference}')">
+                                ✅ Marquer comme reçue
+                            </button>
+                        ` : ''}
+                        <button class="btn btn-secondary" onclick="printOrder('${order.reference}')">
+                            🖨️ Imprimer
+                        </button>
+                    </div>
+
+                </div>
+            `;
+
+            return card;
+        }
+
+        /* ================================================================
+           ACTIONS
+           ================================================================ */
+        function toggleOrder(header) {
+            const card = header.closest('.order-card');
+            card.classList.toggle('expanded');
+        }
+
+        function cancelOrder(reference) {
+            if (!confirm('Voulez-vous vraiment annuler cette commande ?')) return;
+
+            const orders = getOrders();
+            const order = orders.find(o => o.reference === reference);
+            if (!order) return;
+
+            order.status = 'annulee';
+            order.cancelled_at = new Date().toISOString();
+            saveOrders(orders);
+
+            showToast('Commande annulée');
+            renderOrders(getOrders());
+        }
+
+        function markReceived(reference) {
+            const orders = getOrders();
+            const order = orders.find(o => o.reference === reference);
+            if (!order) return;
+
+            order.status = 'livree';
+            order.received_at = new Date().toISOString();
+            saveOrders(orders);
+
+            showToast('Commande marquée comme reçue');
+            renderOrders(getOrders());
+        }
+
+        function printOrder(reference) {
+            const orders = getOrders();
+            const order = orders.find(o => o.reference === reference);
+            if (!order) return;
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Commande ${order.reference}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
+                        h1 { color: #8a6d3b; }
+                        h2 { color: #8a6d3b; font-size: 1.1rem; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-top: 30px; }
+                        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
+                        .total { font-size: 1.2rem; font-weight: bold; text-align: right; color: #8a6d3b; }
+                        .info-block { background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 10px 0; }
+                        .footer { margin-top: 40px; text-align: center; color: #888; font-size: 0.85rem; }
+                    </style>
+                </head>
+                <body>
+                    <h1>📦 Commande ${order.reference}</h1>
+                    <p><strong>Date :</strong> ${formatDate(order.date)}</p>
+                    <p><strong>Statut :</strong> ${getStatusLabel(order.status)}</p>
+
+                    <h2>Client</h2>
+                    <div class="info-block">
+                        <p><strong>${escapeHtml(order.client.name)}</strong></p>
+                        <p>${escapeHtml(order.client.email)} — ${escapeHtml(order.client.phone)}</p>
+                        <p>${escapeHtml(order.client.address)}<br>${escapeHtml(order.client.city)}</p>
+                        ${order.client.notes ? `<p><em>Notes : ${escapeHtml(order.client.notes)}</em></p>` : ''}
+                    </div>
+
+                    <h2>Articles commandés</h2>
+                    <table>
+                        <thead>
+                            <tr><th>Produit</th><th>Prix unitaire</th><th>Qté</th><th>Total</th></tr>
+                        </thead>
+                        <tbody>
+                            ${order.items.map(item => `
+                                <tr>
+                                    <td>${escapeHtml(item.nom)}</td>
+                                    <td>${formatPrice(item.prix)}</td>
+                                    <td>${item.quantite}</td>
+                                    <td>${formatPrice(item.prix * item.quantite)}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+
+                    <h2>Récapitulatif</h2>
+                    <div class="info-block">
+                        <p style="text-align:right">Sous-total : ${formatPrice(order.subtotal)}</p>
+                        <p style="text-align:right">Livraison : ${order.shipping > 0 ? formatPrice(order.shipping) : 'Gratuite'}</p>
+                        <p class="total">Total : ${formatPrice(order.total)}</p>
+                        <p style="text-align:right"><strong>Paiement :</strong> ${getPaymentLabel(order.payment)}</p>
+                    </div>
+
+                    <div class="footer">
+                        MMC - Maître Morazandry Cosmos — contact@mmc-cosmos.com
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            setTimeout(() => printWindow.print(), 500);
+        }
+
+        /* ================================================================
+           FILTRES
+           ================================================================ */
+        function applyFilters() {
+            const searchInput = document.getElementById('orders-search');
+            const statusSelect = document.getElementById('orders-status');
+
+            const search = (searchInput?.value || '').toLowerCase().trim();
+            const status = statusSelect?.value || '';
+
+            document.querySelectorAll('.order-card').forEach(card => {
+                const ref = card.getAttribute('data-ref') || '';
+                const cardStatus = card.getAttribute('data-status') || '';
+
+                const matchSearch = !search || ref.includes(search);
+                const matchStatus = !status || cardStatus === status;
+
+                card.style.display = (matchSearch && matchStatus) ? 'block' : 'none';
+            });
+        }
+
+        /* ================================================================
+           INITIALISATION
+           ================================================================ */
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCounters();
+
+            const orders = getOrders();
+            updateStats(orders);
+            renderOrders(orders);
+
+            // Filtres
+            const searchInput = document.getElementById('orders-search');
+            const statusSelect = document.getElementById('orders-status');
+
+            if (searchInput) searchInput.addEventListener('input', applyFilters);
+            if (statusSelect) statusSelect.addEventListener('change', applyFilters);
+        });
+    </script>
+
+</body>
+</html>
