@@ -1,0 +1,22 @@
+# ============================================
+# robots.txt pour MMC - Maître Morazandry Cosmos
+# https://jiressclawer-max.github.io/mmc-cosmos/
+# ============================================
+
+User-agent: *
+Allow: /
+
+# Bloquer les dossiers techniques
+Disallow: /css/
+Disallow: /js/
+Disallow: /data/
+
+# Autoriser les images et les thèmes
+Allow: /images/
+Allow: /themes/
+
+# Sitemap principal
+Sitemap: https://jiressclawer-max.github.io/mmc-cosmos/sitemap.xml
+
+# Crawl-delay (optionnel, respecté par certains robots)
+Crawl-delay: 1
