@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Votre panier - MMC - Maître Morazandry Cosmos. Finalisez votre commande de livres, soins naturels et remèdes.">
+    <meta name="keywords" content="panier, commande, boutique MMC, achat livre, soins naturels, remèdes">
+    <meta name="author" content="Maître MORAZANDRY">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Mon Panier - MMC - Maître Morazandry Cosmos</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== PANIER ===== */
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .cart-items {
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .cart-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cart-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: #d4a373;
+            margin: 0;
+        }
+
+        .btn-clear {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-clear:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Ligne d'article */
+        .cart-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto auto;
+            gap: 16px;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1418, #2a1f1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #d4a373;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cart-item-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: #f5e7d9;
+            margin: 0 0 4px;
+            line-height: 1.3;
+        }
+
+        .cart-item-info p {
+            font-size: 0.8rem;
+            color: #8a7560;
+            margin: 0;
+        }
+
+        .cart-item-unit-price {
+            font-size: 0.85rem;
+            color: #a89078;
+            margin-top: 4px;
+        }
+
+        /* Contrôle de quantité */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(12, 10, 10, 0.5);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            background: rgba(212, 163, 115, 0.1);
+            border: none;
+            border-radius: 6px;
+            color: #d4a373;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: inherit;
+        }
+
+        .quantity-btn:hover:not(:disabled) {
+            background: rgba(212, 163, 115, 0.25);
+        }
+
+        .quantity-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .quantity-value {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+            color: #f0e6d8;
+            font-size: 0.9rem;
+        }
+
+        /* Sous-total ligne */
+        .cart-item-subtotal {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #d4a373;
+            text-align: right;
+            min-width: 90px;
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: #8a7560;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-remove:hover {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* ===== RÉSUMÉ ===== */
+        .cart-summary {
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .cart-summary h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #d4a373;
+            margin: 0 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: #bfaa95;
+        }
+
+        .summary-line.total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d4a373;
+            padding-top: 16px;
+            margin-top: 12px;
+            border-top: 2px solid rgba(212, 163, 115, 0.2);
+        }
+
+        .summary-line.shipping {
+            color: #8a7560;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        .btn-checkout {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px 20px;
+            background: #d4a373;
+            color: #0c0a0a;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-checkout:hover {
+            background: #e5b888;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 163, 115, 0.4);
+        }
+
+        .btn-checkout:disabled {
+            background: rgba(55, 65, 81, 0.6);
+            color: #8a7560;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-continue {
+            display: block;
+            text-align: center;
+            margin-top: 12px;
+            color: #bfaa95;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .btn-continue:hover {
+            color: #d4a373;
+        }
+
+        /* ===== PANIER VIDE ===== */
+        .cart-empty {
+            text-align: center;
+            padding: 80px 20px;
+            color: #8a7560;
+        }
+
+        .cart-empty-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .cart-empty h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: #d4a373;
+            margin-bottom: 12px;
+        }
+
+        .cart-empty p {
+            margin-bottom: 24px;
+            font-size: 1rem;
+        }
+
+        /* ===== FORMULAIRE DE COMMANDE ===== */
+        .checkout-form-container {
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .checkout-form-container h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: #d4a373;
+            margin: 0 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: #bfaa95;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(12, 10, 10, 0.6);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f0e6d8;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Options de paiement */
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            background: rgba(12, 10, 10, 0.5);
+            border: 2px solid rgba(212, 163, 115, 0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .payment-option:hover {
+            border-color: rgba(212, 163, 115, 0.4);
+            background: rgba(212, 163, 115, 0.05);
+        }
+
+        .payment-option input[type="radio"] {
+            accent-color: #d4a373;
+            width: 18px;
+            height: 18px;
+        }
+
+        .payment-option.selected {
+            border-color: #d4a373;
+            background: rgba(212, 163, 115, 0.1);
+        }
+
+        .payment-option-label {
+            font-size: 0.9rem;
+            color: #f0e6d8;
+            font-weight: 500;
+        }
+
+        .payment-option-desc {
+            font-size: 0.75rem;
+            color: #8a7560;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* Confirmation */
+        .confirmation-container {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .confirmation-container.active {
+            display: block;
+        }
+
+        .confirmation-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-container h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #d4a373;
+            margin-bottom: 16px;
+        }
+
+        .confirmation-container p {
+            color: #bfaa95;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .confirmation-ref {
+            display: inline-block;
+            background: rgba(212, 163, 115, 0.15);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #d4a373;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        /* Toast */
+        .mmc-toast {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(30, 26, 23, 0.98);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 12px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f0e6d8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .mmc-toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mmc-toast-success { border-color: rgba(34, 197, 94, 0.4); }
+        .mmc-toast-error { border-color: rgba(239, 68, 68, 0.4); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cart-item {
+                grid-template-columns: 60px 1fr;
+                gap: 12px;
+                padding: 16px;
+            }
+
+            .cart-item-image {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .quantity-control {
+                grid-column: 2;
+                justify-self: start;
+            }
+
+            .cart-item-subtotal {
+                grid-column: 2;
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            .btn-remove {
+                grid-column: 2;
+                justify-self: start;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-header h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== FOND COSMIQUE ===== -->
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+        <div class="exploration-glow"></div>
+    </div>
+
+    <!-- ===== CONTENU ===== -->
+    <div class="content-overlay">
+
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="logo">
+                    <a href="index.html" aria-label="Accueil MMC">
+                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img"
+                             width="180" height="60" loading="eager" fetchpriority="high" decoding="async"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="logo-text" style="display:none;">
+                            <span class="logo-title">MMC</span>
+                            <span class="logo-sub">Maître Morazandry Cosmos</span>
+                        </span>
+                    </a>
+                </div>
+
+                <nav class="main-nav" aria-label="Navigation principale">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="biographie.html" class="nav-link">Biographie</a>
+                    <a href="themes/index.html" class="nav-link">Thèmes</a>
+                    <a href="articles.html" class="nav-link">Articles</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="boutique.html" class="nav-link">Boutique</a>
+                    <a href="conferences.html" class="nav-link">Conférences</a>
+                    <a href="consultations.html" class="nav-link">Consultations</a>
+                    <a href="panier.html" class="nav-link cart-link active" aria-label="Panier">🛒 <span class="cart-count">0</span></a>
+                </nav>
+
+                <button class="mobile-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Accueil</a>
+                <a href="biographie.html">Biographie</a>
+                <a href="themes/index.html">Thèmes du jour</a>
+                <a href="articles.html">Articles</a>
+                <a href="forum.html">Forum</a>
+                <a href="boutique.html">Boutique</a>
+                <a href="conferences.html">Conférences</a>
+                <a href="consultations.html">Consultations</a>
+                <a href="panier.html">Panier</a>
+            </div>
+        </header>
+
+        <!-- ===== BANNIÈRE ===== -->
+        <section class="page-banner">
+            <div class="container">
+                <h1 class="page-title">🛒 Mon Panier</h1>
+                <p class="page-subtitle">Vérifiez vos articles avant de passer commande</p>
+            </div>
+        </section>
+
+        <!-- ===== CONTENU PANIER ===== -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+
+                <!-- Vue Panier (par défaut) -->
+                <div id="cart-view">
+                    <!-- Panier vide -->
+                    <div id="cart-empty" class="cart-empty" style="display: none;">
+                        <div class="cart-empty-icon">🛒</div>
+                        <h2>Votre panier est vide</h2>
+                        <p>Découvrez nos livres, soins naturels et remèdes.</p>
+                        <a href="boutique.html" class="btn btn-primary">🛍️ Aller à la boutique</a>
+                    </div>
+
+                    <!-- Panier avec articles -->
+                    <div id="cart-content" style="display: none;">
+                        <div class="cart-layout">
+
+                            <!-- Articles -->
+                            <div>
+                                <div class="cart-items">
+                                    <div class="cart-header">
+                                        <h2 id="cart-items-title">Articles (<span id="cart-items-count">0</span>)</h2>
+                                        <button class="btn-clear" onclick="clearCart()">🗑️ Vider le panier</button>
+                                    </div>
+                                    <div id="cart-items-list"></div>
+                                </div>
+                            </div>
+
+                            <!-- Résumé -->
+                            <div class="cart-summary">
+                                <h2>📋 Résumé de la commande</h2>
+
+                                <div class="summary-line">
+                                    <span>Sous-total</span>
+                                    <span id="summary-subtotal">0 Ar</span>
+                                </div>
+
+                                <div class="summary-line shipping">
+                                    <span>🚚 Livraison</span>
+                                    <span id="summary-shipping">À calculer</span>
+                                </div>
+
+                                <div class="summary-line total">
+                                    <span>Total</span>
+                                    <span id="summary-total">0 Ar</span>
+                                </div>
+
+                                <button class="btn-checkout" onclick="goToCheckout()">
+                                    ✅ Passer la commande
+                                </button>
+
+                                <a href="boutique.html" class="btn-continue">
+                                    ← Continuer mes achats
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vue Checkout (formulaire) -->
+                <div id="checkout-view" style="display: none;">
+                    <div class="checkout-form-container">
+                        <h2>📝 Informations de livraison</h2>
+
+                        <form id="checkout-form" onsubmit="submitOrder(event)">
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="customer-name">Nom complet <span class="required">*</span></label>
+                                    <input type="text" id="customer-name" name="name" required placeholder="Ex: Rakoto Jean">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer-email">Email <span class="required">*</span></label>
+                                    <input type="email" id="customer-email" name="email" required placeholder="Ex: rakoto@email.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer-phone">Téléphone <span class="required">*</span></label>
+                                    <input type="tel" id="customer-phone" name="phone" required placeholder="Ex: 034 00 000 00">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer-city">Ville <span class="required">*</span></label>
+                                    <input type="text" id="customer-city" name="city" required placeholder="Ex: Antananarivo">
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="customer-address">Adresse complète <span class="required">*</span></label>
+                                    <textarea id="customer-address" name="address" required placeholder="Ex: Lot II A 12 Bis, Ambohijatovo, Antananarivo 101"></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="customer-notes">Notes (facultatif)</label>
+                                    <textarea id="customer-notes" name="notes" placeholder="Instructions particulières pour la livraison..."></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label>Mode de paiement <span class="required">*</span></label>
+                                    <div class="payment-options">
+                                        <label class="payment-option" onclick="selectPayment(this)">
+                                            <input type="radio" name="payment" value="manual" required>
+                                            <div>
+                                                <span class="payment-option-label">💳 Paiement manuel</span>
+                                                <span class="payment-option-desc">Virement ou espèces à la livraison</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="payment-option" onclick="selectPayment(this)">
+                                            <input type="radio" name="payment" value="mvola">
+                                            <div>
+                                                <span class="payment-option-label">📱 MVola</span>
+                                                <span class="payment-option-desc">Paiement mobile Telma</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="payment-option" onclick="selectPayment(this)">
+                                            <input type="radio" name="payment" value="orange_money">
+                                            <div>
+                                                <span class="payment-option-label">📱 Orange Money</span>
+                                                <span class="payment-option-desc">Paiement mobile Orange</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Récapitulatif -->
+                            <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(212, 163, 115, 0.15);">
+                                <div class="summary-line">
+                                    <span>Sous-total</span>
+                                    <span id="checkout-subtotal">0 Ar</span>
+                                </div>
+                                <div class="summary-line shipping">
+                                    <span>🚚 Livraison</span>
+                                    <span id="checkout-shipping">À calculer</span>
+                                </div>
+                                <div class="summary-line total">
+                                    <span>Total</span>
+                                    <span id="checkout-total">0 Ar</span>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+                                <button type="button" class="btn btn-secondary" onclick="backToCart()">← Retour au panier</button>
+                                <button type="submit" class="btn-checkout" style="flex: 1; margin: 0;">✅ Confirmer la commande</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Vue Confirmation -->
+                <div id="confirmation-view" class="confirmation-container">
+                    <div class="confirmation-icon">🎉</div>
+                    <h2>Commande confirmée !</h2>
+                    <p>Merci pour votre commande. Nous vous contacterons dans les plus brefs délais pour finaliser la livraison.</p>
+                    <div class="confirmation-ref" id="confirmation-ref">CMD-XXXXXX</div>
+                    <p style="font-size: 0.9rem; color: #8a7560;">
+                        Un email de confirmation vous sera envoyé à l'adresse indiquée.
+                    </p>
+                    <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <a href="boutique.html" class="btn btn-primary">🛍️ Continuer mes achats</a>
+                        <a href="index.html" class="btn btn-secondary">🏠 Retour à l'accueil</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <h4>MMC</h4>
+                    <p>Maître Morazandry Cosmos</p>
+                    <p class="footer-sub">Penseur, Astronome et Attractionniste Malagasy</p>
+                    <p class="footer-small">26 ans de recherche à travers Madagascar</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="biographie.html">Biographie</a></li>
+                        <li><a href="themes/index.html">Thèmes du jour</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="conferences.html">Conférences</a></li>
+                        <li><a href="consultations.html">Consultations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Mon compte</h4>
+                    <ul>
+                        <li><a href="connexion.html">Connexion</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                        <li><a href="mes-commandes.html">Mes commandes</a></li>
+                        <li><a href="mes-inscriptions.html">Mes inscriptions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                        <li><a href="#" aria-label="Instagram">📸 Instagram</a></li>
+                        <li><a href="#" aria-label="Twitter">🐦 Twitter</a></li>
+                    </ul>
+                    <p class="footer-small">📧 contact@mmc-cosmos.com</p>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p>© <span class="current-year">2026</span> MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
+                <p>
+                    <a href="index.html">Accueil</a> ·
+                    <a href="sitemap.html">Plan du site</a> ·
+                    <a href="sitemap.xml">Sitemap XML</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/script.js"></script>
+
+    <!-- ===== SCRIPT DU PANIER ===== -->
+    <script>
+        /* ================================================================
+           CONFIGURATION
+           ================================================================ */
+        const CART_KEY = 'mmc_cart';
+        const ORDERS_KEY = 'mmc_orders';
+        const FREE_SHIPPING_THRESHOLD = 100000; // 100 000 Ar
+        const SHIPPING_FEE = 10000; // 10 000 Ar
+
+        /* ================================================================
+           UTILITAIRES
+           ================================================================ */
+        function getCart() {
+            try {
+                return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            updateCartCounters();
+        }
+
+        function updateCartCounters() {
+            const cart = getCart();
+            const total = cart.reduce((sum, item) => sum + item.quantite, 0);
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = total;
+                el.style.display = total > 0 ? 'inline-block' : 'none';
+            });
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-FR').format(price) + ' Ar';
+        }
+
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
+        function showToast(message, type = 'success') {
+            document.querySelectorAll('.mmc-toast').forEach(t => t.remove());
+            const toast = document.createElement('div');
+            toast.className = 'mmc-toast mmc-toast-' + type;
+            toast.innerHTML = `<span>${type === 'success' ? '✅' : '❌'}</span><span>${escapeHtml(message)}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('visible'), 10);
+            setTimeout(() => {
+                toast.classList.remove('visible');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        /* ================================================================
+           AFFICHAGE DU PANIER
+           ================================================================ */
+        function renderCart() {
+            const cart = getCart();
+            const emptyView = document.getElementById('cart-empty');
+            const contentView = document.getElementById('cart-content');
+
+            if (cart.length === 0) {
+                emptyView.style.display = 'block';
+                contentView.style.display = 'none';
+                return;
+            }
+
+            emptyView.style.display = 'none';
+            contentView.style.display = 'block';
+
+            const list = document.getElementById('cart-items-list');
+            list.innerHTML = '';
+
+            let subtotal = 0;
+            let totalItems = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.prix * item.quantite;
+                subtotal += itemTotal;
+                totalItems += item.quantite;
+
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+
+                const imageHtml = item.image
+                    ? `<img src="${item.image}" alt="${escapeHtml(item.nom)}" onerror="this.style.display='none'; this.parentElement.textContent='📦';">`
+                    : '📦';
+
+                row.innerHTML = `
+                    <div class="cart-item-image">${imageHtml}</div>
+                    <div class="cart-item-info">
+                        <h3>${escapeHtml(item.nom)}</h3>
+                        <p>${escapeHtml(item.unite || '')}</p>
+                        <div class="cart-item-unit-price">${formatPrice(item.prix)} / unité</div>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="changeQuantity('${item.id}', -1)" ${item.quantite <= 1 ? 'disabled' : ''}>−</button>
+                        <span class="quantity-value">${item.quantite}</span>
+                        <button class="quantity-btn" onclick="changeQuantity('${item.id}', 1)">+</button>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                        <div class="cart-item-subtotal">${formatPrice(itemTotal)}</div>
+                        <button class="btn-remove" onclick="removeItem('${item.id}')" aria-label="Supprimer">🗑️</button>
+                    </div>
+                `;
+                list.appendChild(row);
+            });
+
+            document.getElementById('cart-items-count').textContent = totalItems;
+            document.getElementById('cart-items-title').innerHTML = `Articles (<span id="cart-items-count">${totalItems}</span>)`;
+
+            // Calcul des frais de livraison
+            let shipping = 0;
+            let shippingText = 'Gratuite';
+            if (subtotal < FREE_SHIPPING_THRESHOLD && subtotal > 0) {
+                shipping = SHIPPING_FEE;
+                shippingText = formatPrice(shipping);
+            } else if (subtotal === 0) {
+                shippingText = 'À calculer';
+            }
+
+            const total = subtotal + shipping;
+
+            document.getElementById('summary-subtotal').textContent = formatPrice(subtotal);
+            document.getElementById('summary-shipping').textContent = shippingText;
+            document.getElementById('summary-total').textContent = formatPrice(total);
+        }
+
+        /* ================================================================
+           ACTIONS PANIER
+           ================================================================ */
+        function changeQuantity(itemId, delta) {
+            const cart = getCart();
+            const item = cart.find(i => i.id === itemId);
+            if (!item) return;
+
+            item.quantite += delta;
+            if (item.quantite < 1) item.quantite = 1;
+
+            saveCart(cart);
+            renderCart();
+        }
+
+        function removeItem(itemId) {
+            if (!confirm('Supprimer cet article du panier ?')) return;
+            let cart = getCart();
+            cart = cart.filter(i => i.id !== itemId);
+            saveCart(cart);
+            renderCart();
+            showToast('Article supprimé du panier');
+        }
+
+        function clearCart() {
+            if (!confirm('Vider entièrement le panier ?')) return;
+            localStorage.removeItem(CART_KEY);
+            updateCartCounters();
+            renderCart();
+            showToast('Panier vidé');
+        }
+
+        /* ================================================================
+           CHECKOUT
+           ================================================================ */
+        function goToCheckout() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                showToast('Votre panier est vide', 'error');
+                return;
+            }
+
+            // Masquer la vue panier, afficher le checkout
+            document.getElementById('cart-view').style.display = 'none';
+            document.getElementById('checkout-view').style.display = 'block';
+
+            // Mettre à jour les totaux du checkout
+            let subtotal = 0;
+            cart.forEach(item => subtotal += item.prix * item.quantite);
+
+            let shipping = 0;
+            let shippingText = 'Gratuite';
+            if (subtotal < FREE_SHIPPING_THRESHOLD && subtotal > 0) {
+                shipping = SHIPPING_FEE;
+                shippingText = formatPrice(shipping);
+            }
+
+            document.getElementById('checkout-subtotal').textContent = formatPrice(subtotal);
+            document.getElementById('checkout-shipping').textContent = shippingText;
+            document.getElementById('checkout-total').textContent = formatPrice(subtotal + shipping);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToCart() {
+            document.getElementById('checkout-view').style.display = 'none';
+            document.getElementById('cart-view').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectPayment(el) {
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+
+            const cart = getCart();
+            if (cart.length === 0) {
+                showToast('Votre panier est vide', 'error');
+                return;
+            }
+
+            // Récupérer les infos
+            const form = document.getElementById('checkout-form');
+            const formData = new FormData(form);
+
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const city = formData.get('city');
+            const address = formData.get('address');
+            const notes = formData.get('notes') || '';
+            const payment = formData.get('payment');
+
+            if (!payment) {
+                showToast('Veuillez choisir un mode de paiement', 'error');
+                return;
+            }
+
+            // Calculer les totaux
+            let subtotal = 0;
+            cart.forEach(item => subtotal += item.prix * item.quantite);
+
+            let shipping = 0;
+            if (subtotal < FREE_SHIPPING_THRESHOLD) shipping = SHIPPING_FEE;
+
+            const total = subtotal + shipping;
+
+            // Générer une référence de commande
+            const reference = 'CMD-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2, 4).toUpperCase();
+
+            // Créer l'objet commande
+            const order = {
+                reference: reference,
+                date: new Date().toISOString(),
+                client: { name, email, phone, city, address, notes },
+                payment: payment,
+                items: cart,
+                subtotal: subtotal,
+                shipping: shipping,
+                total: total,
+                status: 'en_attente'
+            };
+
+            // Sauvegarder la commande
+            let orders = [];
+            try {
+                orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+            } catch (e) {}
+            orders.push(order);
+            localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+
+            // Vider le panier
+            localStorage.removeItem(CART_KEY);
+            updateCartCounters();
+
+            // Afficher la confirmation
+            document.getElementById('checkout-view').style.display = 'none';
+            document.getElementById('cart-view').style.display = 'none';
+            document.getElementById('confirmation-view').classList.add('active');
+            document.getElementById('confirmation-ref').textContent = reference;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ================================================================
+           INITIALISATION
+           ================================================================ */
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCounters();
+            renderCart();
+        });
+    </script>
+
+</body>
+</html>
