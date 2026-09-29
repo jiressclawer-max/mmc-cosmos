@@ -1,0 +1,103 @@
+{
+  "site": {
+    "titre": "Conférences - MMC - Maître Morazandry Cosmos",
+    "description": "Conférences à venir et passées de Maître MORAZANDRY",
+    "derniere_mise_a_jour": "2026-09-29"
+  },
+  "conferences": [
+    {
+      "id": 1,
+      "titre": "Le Climat Cosmique – La force oubliée qui gouverne tout",
+      "theme": "Cosmologie",
+      "statut": "a_venir",
+      "date": "2026-11-15",
+      "heure": "09:00",
+      "duree": "2h",
+      "lieu": "Université d'Antananarivo",
+      "adresse": "Campus d'Ankatso, Antananarivo",
+      "prix": 0,
+      "devise": "Ar",
+      "places_total": 200,
+      "places_restantes": 156,
+      "image": "images/conferences/conference-1.jpg",
+      "description": "Une conférence exceptionnelle sur le Climat Cosmique, cette force qui organise tout l'univers. Découvrez pourquoi elle est la clé de la formation de toutes choses.",
+      "intervenant": "Maître MORAZANDRY",
+      "inscription_url": "inscription-conference.html?id=1"
+    },
+    {
+      "id": 2,
+      "titre": "La Formation des Continents et de Madagascar",
+      "theme": "Géophysique",
+      "statut": "a_venir",
+      "date": "2026-12-10",
+      "heure": "14:00",
+      "duree": "1h30",
+      "lieu": "Alliance Française de Toamasina",
+      "adresse": "Boulevard Joffre, Toamasina",
+      "prix": 10000,
+      "devise": "Ar",
+      "places_total": 150,
+      "places_restantes": 89,
+      "image": "images/conferences/conference-2.jpg",
+      "description": "Comment la Terre a-t-elle formé les continents ? Découvrez les théories de Maître MORAZANDRY sur la dérive des continents et la séparation de Madagascar.",
+      "intervenant": "Maître MORAZANDRY",
+      "inscription_url": "inscription-conference.html?id=2"
+    },
+    {
+      "id": 3,
+      "titre": "L'Origine de la Vie – De l'énergie pure aux premiers êtres",
+      "theme": "Biologie",
+      "statut": "terminee",
+      "date": "2026-07-25",
+      "heure": "08:00",
+      "duree": "2h",
+      "lieu": "AEOM - Salles du Nouveau Bâtiment",
+      "adresse": "Maroantsetra, Région Analanjirofo",
+      "prix": 0,
+      "devise": "Ar",
+      "places_total": 100,
+      "places_restantes": 0,
+      "image": "images/conferences/conference-3.jpg",
+      "description": "Retour sur la conférence « Comment la Terre a-t-elle formé les continents ? » devant 40 étudiants de l'AEOM. Un moment d'échange riche et passionnant.",
+      "intervenant": "Maître MORAZANDRY",
+      "video_url": "https://www.youtube.com/embed/VIDEO_ID",
+      "photos": [
+        "images/conferences/conference-3-photo-1.jpg",
+        "images/conferences/conference-3-photo-2.jpg",
+        "images/conferences/conference-3-photo-3.jpg"
+      ],
+      "participants": 40
+    },
+    {
+      "id": 4,
+      "titre": "Le Calendrier Cosmique et les Saisons",
+      "theme": "Cosmologie",
+      "statut": "terminee",
+      "date": "2026-05-20",
+      "heure": "10:00",
+      "duree": "1h30",
+      "lieu": "Lycée Jacques Rabemananjara",
+      "adresse": "Toamasina",
+      "prix": 0,
+      "devise": "Ar",
+      "places_total": 80,
+      "places_restantes": 0,
+      "image": "images/conferences/conference-4.jpg",
+      "description": "Conférence sur le calendrier traditionnel malgache et son lien avec les cycles cosmiques.",
+      "intervenant": "Maître MORAZANDRY",
+      "video_url": "https://www.youtube.com/embed/VIDEO_ID_2",
+      "photos": [
+        "images/conferences/conference-4-photo-1.jpg",
+        "images/conferences/conference-4-photo-2.jpg"
+      ],
+      "participants": 65
+    }
+  ],
+  "categories": [
+    { "nom": "Cosmologie", "icone": "🌌" },
+    { "nom": "Géophysique", "icone": "🌍" },
+    { "nom": "Biologie", "icone": "🧬" },
+    { "nom": "Philosophie", "icone": "📚" },
+    { "nom": "Sagesse Malgache", "icone": "🇲🇬" }
+  ]
+}
