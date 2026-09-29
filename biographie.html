@@ -3,46 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Biographie de Maître MORAZANDRY - Penseur, Astronome et Attractionniste Malagasy. Parcours, recherches et publications.">
-    <meta name="keywords" content="Maître Morazandry biographie, MMC, chercheur malgache, tradipraticien, karaté shotokan">
-    <meta property="og:title" content="Biographie - MMC - Maître Morazandry Cosmos">
-    <meta property="og:description" content="Parcours, recherches et publications de Maître MORAZANDRY.">
+    <meta name="description" content="Biographie de Maître MORAZANDRY - Penseur, Astronome et Attractionniste Malagasy. Parcours militaire, recherches ethnobotaniques, domaines d'étude et publications.">
+    <meta name="keywords" content="Maître Morazandry biographie, MMC, chercheur malgache, tradipraticien, karaté shotokan, ethnobotanique Madagascar, Association Nationale Tradipraticiens">
+    <meta name="author" content="Maître MORAZANDRY">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Biographie - Maître MORAZANDRY | MMC">
+    <meta property="og:description" content="Découvrez le parcours complet de Maître MORAZANDRY : 26 ans de recherche à travers Madagascar, tradipraticien, explorateur et chercheur autodidacte.">
     <meta property="og:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
     <meta property="og:url" content="https://jiressclawer-max.github.io/mmc-cosmos/biographie.html">
-    <title>Biographie - MMC - Maître Morazandry Cosmos</title>
+    <meta property="og:site_name" content="MMC - Maître Morazandry Cosmos">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Biographie - Maître MORAZANDRY | MMC">
+    <meta name="twitter:description" content="Parcours complet de Maître MORAZANDRY : chercheur, tradipraticien et explorateur Malagasy.">
+    <meta name="twitter:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
+
+    <title>Biographie de Maître MORAZANDRY - MMC Cosmos</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://jiressclawer-max.github.io/mmc-cosmos/biographie.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        /* Optimisation des images et logo */
-        .logo-img {
-            height: 60px;
-            width: auto;
-            display: block;
-        }
-        .logo-text {
-            flex-direction: column;
-            line-height: 1.1;
-        }
-        .logo-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #d4a373;
-        }
-        .logo-sub {
-            font-size: 0.75rem;
-            color: #bfaa95;
-            letter-spacing: 0.05em;
-        }
-        .bio-portrait-img {
-            width: 200px;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 16px;
-            border: 2px solid rgba(212, 163, 115, 0.2);
-        }
-    </style>
+    <!-- Données structurées Schema.org Person -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Maître MORAZANDRY",
+        "alternateName": "MMC - Maître Morazandry Cosmos",
+        "jobTitle": "Penseur, Astronome et Attractionniste Malagasy",
+        "description": "Tradipraticien, explorateur et chercheur autodidacte (Didaskein) en biologie et philosophie. Auteur de « La Vie est une Punition » (2007), « La Princesse de la Nature » (2009) et « La Formation de Toutes Choses ».",
+        "birthPlace": {
+            "@type": "Place",
+            "name": "Ambodimandrorofo, Madagascar"
+        },
+        "nationality": "Malagasy",
+        "knowsAbout": [
+            "Cosmologie",
+            "Géophysique",
+            "Ethnobotanique",
+            "Philosophie",
+            "Astronomie",
+            "Médecine traditionnelle"
+        ],
+        "author": [
+            {
+                "@type": "Book",
+                "name": "La Vie est une Punition",
+                "datePublished": "2007"
+            },
+            {
+                "@type": "Book",
+                "name": "La Princesse de la Nature",
+                "datePublished": "2009"
+            },
+            {
+                "@type": "Book",
+                "name": "La Formation de Toutes Choses"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 
@@ -57,12 +93,11 @@
     <!-- ===== CONTENU ===== -->
     <div class="content-overlay">
 
-        <!-- HEADER -->
+        <!-- ===== HEADER ===== -->
         <header class="site-header">
             <div class="container header-inner">
                 <div class="logo">
                     <a href="index.html" aria-label="Accueil MMC">
-                        <!-- Logo avec fallback texte automatique -->
                         <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img"
                              width="180" height="60" loading="eager" fetchpriority="high" decoding="async"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -76,29 +111,33 @@
                 <nav class="main-nav" aria-label="Navigation principale">
                     <a href="index.html" class="nav-link">Accueil</a>
                     <a href="biographie.html" class="nav-link active">Biographie</a>
-                    <a href="#" class="nav-link">Articles</a>
-                    <a href="#" class="nav-link">Forum</a>
-                    <a href="#" class="nav-link">Boutique</a>
-                    <a href="#" class="nav-link">Conférences</a>
-                    <a href="#" class="nav-link">Consultations</a>
-                    <a href="#" class="nav-link cart-link" aria-label="Panier">🛒 <span class="cart-count">0</span></a>
+                    <a href="themes/index.html" class="nav-link">Thèmes</a>
+                    <a href="articles.html" class="nav-link">Articles</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="boutique.html" class="nav-link">Boutique</a>
+                    <a href="conferences.html" class="nav-link">Conférences</a>
+                    <a href="consultations.html" class="nav-link">Consultations</a>
+                    <a href="panier.html" class="nav-link cart-link" aria-label="Panier">🛒 <span class="cart-count">0</span></a>
                 </nav>
 
                 <button class="mobile-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
             </div>
 
+            <!-- Menu mobile -->
             <div class="mobile-menu" id="mobileMenu">
                 <a href="index.html">Accueil</a>
                 <a href="biographie.html">Biographie</a>
-                <a href="#">Articles</a>
-                <a href="#">Forum</a>
-                <a href="#">Boutique</a>
-                <a href="#">Conférences</a>
-                <a href="#">Consultations</a>
+                <a href="themes/index.html">Thèmes du jour</a>
+                <a href="articles.html">Articles</a>
+                <a href="forum.html">Forum</a>
+                <a href="boutique.html">Boutique</a>
+                <a href="conferences.html">Conférences</a>
+                <a href="consultations.html">Consultations</a>
+                <a href="panier.html">Panier</a>
             </div>
         </header>
 
-        <!-- BANNIÈRE -->
+        <!-- ===== BANNIÈRE ===== -->
         <section class="page-banner">
             <div class="container">
                 <h1 class="page-title">Biographie</h1>
@@ -106,14 +145,13 @@
             </div>
         </section>
 
-        <!-- CONTENU BIOGRAPHIE -->
+        <!-- ===== CONTENU BIOGRAPHIE ===== -->
         <section class="section">
             <div class="container bio-container">
 
-                <!-- INTRODUCTION -->
+                <!-- ===== INTRODUCTION ===== -->
                 <div class="bio-intro">
                     <div class="bio-portrait">
-                        <!-- Image de portrait avec fallback -->
                         <img src="images/portrait.jpg" alt="Portrait de Maître MORAZANDRY" class="bio-portrait-img"
                              width="200" height="240" loading="lazy" decoding="async"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -135,7 +173,7 @@
                     </div>
                 </div>
 
-                <!-- PARCOURS MILITAIRE ET SPORTIF -->
+                <!-- ===== PARCOURS MILITAIRE ET SPORTIF ===== -->
                 <div class="bio-block">
                     <h2>🥋 Parcours militaire et sportif</h2>
                     <p>
@@ -161,7 +199,7 @@
                     </p>
                 </div>
 
-                <!-- RECHERCHES -->
+                <!-- ===== RECHERCHES ===== -->
                 <div class="bio-block">
                     <h2>🌿 Recherches et botanique</h2>
                     <p>
@@ -187,7 +225,7 @@
                     </p>
                 </div>
 
-                <!-- DOMAINES D'ÉTUDE -->
+                <!-- ===== DOMAINES D'ÉTUDE ===== -->
                 <div class="bio-block">
                     <h2>🔬 Domaines d'étude</h2>
                     <p>Outre la botanique et la médecine traditionnelle, Maître MORAZANDRY s'est aussi intéressé à plusieurs autres domaines d'étude incluant :</p>
@@ -211,7 +249,7 @@
                     </p>
                 </div>
 
-                <!-- CITATION -->
+                <!-- ===== CITATION ===== -->
                 <div class="bio-quote">
                     <blockquote>
                         « Quiconque qui ne mange pas meurt et quiconque qui n'a pas de relation sexuelle est spirituellement, mentalement,
@@ -220,55 +258,67 @@
                     </blockquote>
                 </div>
 
-                <!-- RETOUR -->
+                <!-- ===== RETOUR ===== -->
                 <div class="bio-back">
                     <a href="index.html" class="btn btn-secondary">← Retour à l'accueil</a>
+                    <a href="themes/index.html" class="btn btn-primary">📚 Lire les thèmes →</a>
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
+        <!-- ===== FOOTER ===== -->
         <footer class="site-footer">
             <div class="container footer-grid">
                 <div>
                     <h4>MMC</h4>
                     <p>Maître Morazandry Cosmos</p>
                     <p class="footer-sub">Penseur, Astronome et Attractionniste Malagasy</p>
+                    <p class="footer-small">26 ans de recherche à travers Madagascar</p>
                 </div>
                 <div>
                     <h4>Liens rapides</h4>
                     <ul>
                         <li><a href="biographie.html">Biographie</a></li>
-                        <li><a href="#">Articles</a></li>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Boutique</a></li>
+                        <li><a href="themes/index.html">Thèmes du jour</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="conferences.html">Conférences</a></li>
+                        <li><a href="consultations.html">Consultations</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Mon compte</h4>
                     <ul>
-                        <li><a href="#">Connexion</a></li>
-                        <li><a href="#">Inscription</a></li>
+                        <li><a href="connexion.html">Connexion</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                        <li><a href="mes-commandes.html">Mes commandes</a></li>
+                        <li><a href="mes-inscriptions.html">Mes inscriptions</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Suivez-nous</h4>
                     <ul>
-                        <li><a href="#">📘 Facebook</a></li>
-                        <li><a href="#">📸 Instagram</a></li>
-                        <li><a href="#">🐦 Twitter</a></li>
+                        <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                        <li><a href="#" aria-label="Instagram">📸 Instagram</a></li>
+                        <li><a href="#" aria-label="Twitter">🐦 Twitter</a></li>
                     </ul>
                     <p class="footer-small">📧 contact@mmc-cosmos.com</p>
                 </div>
             </div>
             <div class="container footer-bottom">
-                <p>© 2026 MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
-                <p><a href="index.html">Accueil</a> · <a href="sitemap.html">Plan du site</a></p>
+                <p>© <span class="current-year">2026</span> MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
+                <p>
+                    <a href="index.html">Accueil</a> ·
+                    <a href="sitemap.html">Plan du site</a> ·
+                    <a href="sitemap.xml">Sitemap XML</a>
+                </p>
             </div>
         </footer>
 
     </div>
 
+    <!-- ===== SCRIPTS ===== -->
     <script src="js/script.js"></script>
 </body>
 </html>
