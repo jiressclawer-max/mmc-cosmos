@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tous les articles de Maître MORAZANDRY - Cosmologie, géophysique, philosophie, sagesse malgache et sciences. Découvrez la vision de MMC sur la formation de toutes choses.">
+    <meta name="keywords" content="articles Maître Morazandry, cosmologie, géophysique, philosophie malgache, climat cosmique, sciences, recherche">
+    <meta name="author" content="Maître MORAZANDRY">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Articles - MMC - Maître Morazandry Cosmos">
+    <meta property="og:description" content="Tous les articles de Maître MORAZANDRY sur la formation de toutes choses.">
+    <meta property="og:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
+    <meta property="og:url" content="https://jiressclawer-max.github.io/mmc-cosmos/articles.html">
+    <meta property="og:site_name" content="MMC - Maître Morazandry Cosmos">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Articles - MMC">
+    <meta name="twitter:description" content="Tous les articles de Maître MORAZANDRY.">
+    <meta name="twitter:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
+
+    <title>Articles - MMC - Maître Morazandry Cosmos</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://jiressclawer-max.github.io/mmc-cosmos/articles.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Données structurées Schema.org Blog -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Articles - MMC - Maître Morazandry Cosmos",
+        "description": "Tous les articles de Maître MORAZANDRY sur la formation de toutes choses.",
+        "url": "https://jiressclawer-max.github.io/mmc-cosmos/articles.html",
+        "inLanguage": "fr",
+        "author": {
+            "@type": "Person",
+            "name": "Maître MORAZANDRY"
+        }
+    }
+    </script>
+
+    <style>
+        /* Grille d'articles */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        /* Carte d'article */
+        .article-card {
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 163, 115, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(212, 163, 115, 0.3);
+        }
+
+        .article-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #1a1418, #2a1f1a);
+        }
+
+        .article-card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+        }
+
+        .article-card-cat {
+            background: rgba(212, 163, 115, 0.15);
+            color: #d4a373;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(212, 163, 115, 0.25);
+        }
+
+        .article-card-date {
+            color: #8a7560;
+            padding: 3px 0;
+        }
+
+        .article-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #f5e7d9;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .article-card-excerpt {
+            color: #a89078;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .article-card-link {
+            color: #d4a373;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            align-self: flex-start;
+        }
+
+        .article-card:hover .article-card-link {
+            color: #e5b888;
+        }
+
+        /* Filtres */
+        .articles-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding: 20px;
+            background: rgba(30, 26, 23, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .articles-filters input,
+        .articles-filters select {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(12, 10, 10, 0.8);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f0e6d8;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .articles-filters input:focus,
+        .articles-filters select:focus {
+            outline: none;
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+        }
+
+        /* Compteur */
+        .articles-count {
+            text-align: center;
+            color: #a89078;
+            font-size: 0.9rem;
+            margin-top: 24px;
+            font-style: italic;
+        }
+
+        /* Message vide */
+        .no-articles {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #8a7560;
+            padding: 60px 20px;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card-image {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== FOND COSMIQUE ===== -->
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+        <div class="exploration-glow"></div>
+    </div>
+
+    <!-- ===== CONTENU ===== -->
+    <div class="content-overlay">
+
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="logo">
+                    <a href="index.html" aria-label="Accueil MMC">
+                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img"
+                             width="180" height="60" loading="eager" fetchpriority="high" decoding="async"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="logo-text" style="display:none;">
+                            <span class="logo-title">MMC</span>
+                            <span class="logo-sub">Maître Morazandry Cosmos</span>
+                        </span>
+                    </a>
+                </div>
+
+                <nav class="main-nav" aria-label="Navigation principale">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="biographie.html" class="nav-link">Biographie</a>
+                    <a href="themes/index.html" class="nav-link">Thèmes</a>
+                    <a href="articles.html" class="nav-link active">Articles</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="boutique.html" class="nav-link">Boutique</a>
+                    <a href="conferences.html" class="nav-link">Conférences</a>
+                    <a href="consultations.html" class="nav-link">Consultations</a>
+                    <a href="panier.html" class="nav-link cart-link" aria-label="Panier">🛒 <span class="cart-count">0</span></a>
+                </nav>
+
+                <button class="mobile-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+            </div>
+
+            <!-- Menu mobile -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Accueil</a>
+                <a href="biographie.html">Biographie</a>
+                <a href="themes/index.html">Thèmes du jour</a>
+                <a href="articles.html">Articles</a>
+                <a href="forum.html">Forum</a>
+                <a href="boutique.html">Boutique</a>
+                <a href="conferences.html">Conférences</a>
+                <a href="consultations.html">Consultations</a>
+                <a href="panier.html">Panier</a>
+            </div>
+        </header>
+
+        <!-- ===== BANNIÈRE ===== -->
+        <section class="page-banner">
+            <div class="container">
+                <h1 class="page-title">📄 Articles</h1>
+                <p class="page-subtitle">Recherches, réflexions et publications de Maître MORAZANDRY</p>
+            </div>
+        </section>
+
+        <!-- ===== FILTRES ===== -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="articles-filters">
+                    <input type="text" id="articles-search" placeholder="🔍 Rechercher un article..." aria-label="Rechercher un article">
+                    <select id="articles-category" aria-label="Filtrer par catégorie">
+                        <option value="">📂 Toutes les catégories</option>
+                        <option value="Cosmologie">🌌 Cosmologie</option>
+                        <option value="Géophysique">🌍 Géophysique</option>
+                        <option value="Biologie">🧬 Biologie</option>
+                        <option value="Philosophie">📚 Philosophie</option>
+                        <option value="Sagesse Malgache">🇲🇬 Sagesse Malgache</option>
+                        <option value="Environnement">🌿 Environnement</option>
+                        <option value="Médecine traditionnelle">🌿 Médecine traditionnelle</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LISTE DES ARTICLES ===== -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div id="articles-container" class="articles-grid">
+                    <!-- Squelettes de chargement -->
+                    <div class="theme-skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                    </div>
+                    <div class="theme-skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                    </div>
+                    <div class="theme-skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                    </div>
+                </div>
+
+                <!-- Message si aucun résultat -->
+                <div id="no-articles-message" class="no-articles" style="display: none;">
+                    <p>Aucun article ne correspond à votre recherche.</p>
+                    <button onclick="resetArticleFilters()" class="btn btn-secondary" style="margin-top: 12px;">Réinitialiser les filtres</button>
+                </div>
+
+                <!-- Compteur -->
+                <div id="articles-count" class="articles-count"></div>
+            </div>
+        </section>
+
+        <!-- ===== APPEL À L'ACTION ===== -->
+        <section class="section section-themes">
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title" style="margin-bottom: 16px;">📚 Découvrez aussi les thèmes du jour</h2>
+                <p style="color: #bfaa95; margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Chaque jour, un extrait de « La Formation de Toutes Choses » vous est proposé avec une explication détaillée.
+                </p>
+                <a href="themes/index.html" class="btn btn-primary">Voir tous les thèmes →</a>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <h4>MMC</h4>
+                    <p>Maître Morazandry Cosmos</p>
+                    <p class="footer-sub">Penseur, Astronome et Attractionniste Malagasy</p>
+                    <p class="footer-small">26 ans de recherche à travers Madagascar</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="biographie.html">Biographie</a></li>
+                        <li><a href="themes/index.html">Thèmes du jour</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="conferences.html">Conférences</a></li>
+                        <li><a href="consultations.html">Consultations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Mon compte</h4>
+                    <ul>
+                        <li><a href="connexion.html">Connexion</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                        <li><a href="mes-commandes.html">Mes commandes</a></li>
+                        <li><a href="mes-inscriptions.html">Mes inscriptions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                        <li><a href="#" aria-label="Instagram">📸 Instagram</a></li>
+                        <li><a href="#" aria-label="Twitter">🐦 Twitter</a></li>
+                    </ul>
+                    <p class="footer-small">📧 contact@mmc-cosmos.com</p>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p>© <span class="current-year">2026</span> MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
+                <p>
+                    <a href="index.html">Accueil</a> ·
+                    <a href="sitemap.html">Plan du site</a> ·
+                    <a href="sitemap.xml">Sitemap XML</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/script.js"></script>
+
+    <!-- ===== SCRIPT DES ARTICLES ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('articles-search');
+            const categorySelect = document.getElementById('articles-category');
+            const container = document.getElementById('articles-container');
+            const noMessage = document.getElementById('no-articles-message');
+            const countDisplay = document.getElementById('articles-count');
+
+            // ⚠️ À REMPLACER : ces articles sont des exemples statiques.
+            // Plus tard, ils pourront être chargés depuis un data/articles.json
+            const articlesData = [
+                {
+                    id: 1,
+                    titre: "Le Climat Cosmique : la force oubliée qui gouverne tout",
+                    categorie: "Cosmologie",
+                    date: "2026-07-25",
+                    excerpt: "Le climat cosmique est l'essence même de la formation de toute matière. Il n'est ni une chose matérielle ni une chose spirituelle. Découvrez cette force qui organise l'univers entier.",
+                    image: "images/themes/jour-4.jpg",
+                    url: "themes/jour-4.html"
+                },
+                {
+                    id: 2,
+                    titre: "La Thèse de l'Accident : l'univers est né d'un hasard",
+                    categorie: "Cosmologie",
+                    date: "2026-07-27",
+                    excerpt: "Par accident, des phénomènes inattendus se sont produits dans le néant multidimensionnel, conduisant à l'apparition d'une première disparité spatiotemporelle.",
+                    image: "images/themes/jour-3.jpg",
+                    url: "themes/jour-3.html"
+                },
+                {
+                    id: 3,
+                    titre: "Le Néant n'est pas le vide : une distinction fondamentale",
+                    categorie: "Cosmologie",
+                    date: "2026-07-26",
+                    excerpt: "Le Néant est un état du Multivers, un espace de potentialités infinies où plusieurs réalités coexistent, s'enchevêtrent et s'interconnectent.",
+                    image: "images/themes/jour-2.jpg",
+                    url: "themes/jour-2.html"
+                },
+                {
+                    id: 4,
+                    titre: "L'origine de la vie : de l'énergie pure aux premiers êtres",
+                    categorie: "Biologie",
+                    date: "2026-07-28",
+                    excerpt: "L'auto-assemblage des particules subatomiques a favorisé la formation d'éléments simples, puis la vie. Découvrez le processus complet.",
+                    image: "images/themes/jour-9.jpg",
+                    url: "themes/jour-9.html"
+                },
+                {
+                    id: 5,
+                    titre: "Les 3 cycles de temps de l'univers",
+                    categorie: "Cosmologie",
+                    date: "2026-07-30",
+                    excerpt: "L'univers s'est formé en trois grands cycles : l'énergie pure, la matière, puis la vie. Chaque cycle a apporté son lot de transformations.",
+                    image: "images/themes/jour-8.jpg",
+                    url: "themes/jour-8.html"
+                },
+                {
+                    id: 6,
+                    titre: "La sagesse malgache et la science moderne",
+                    categorie: "Sagesse Malgache",
+                    date: "2026-07-29",
+                    excerpt: "Les anciens Malgaches détenaient une compréhension profonde de l'univers. Découvrez comment leur sagesse rejoint la science moderne.",
+                    image: "images/themes/jour-5.jpg",
+                    url: "themes/jour-5.html"
+                }
+            ];
+
+            let originalArticles = articlesData;
+
+            function applyFilters() {
+                if (!originalArticles.length) return;
+
+                const search = searchInput.value.toLowerCase().trim();
+                const category = categorySelect.value;
+
+                const filtered = originalArticles.filter(article => {
+                    if (category && article.categorie !== category) return false;
+                    if (search) {
+                        const text = (article.titre + ' ' + article.excerpt + ' ' + article.categorie).toLowerCase();
+                        if (!text.includes(search)) return false;
+                    }
+                    return true;
+                });
+
+                container.innerHTML = '';
+
+                if (filtered.length === 0) {
+                    noMessage.style.display = 'block';
+                    updateCount(0);
+                    return;
+                }
+
+                noMessage.style.display = 'none';
+
+                // Trier par date décroissante
+                filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                filtered.forEach(article => {
+                    container.appendChild(createCard(article));
+                });
+
+                updateCount(filtered.length);
+            }
+
+            function createCard(article) {
+                const card = document.createElement('article');
+                card.className = 'article-card';
+
+                const imageHtml = article.image
+                    ? `<img src="${article.image}" alt="${escapeHtml(article.titre)}" class="article-card-image" loading="lazy" onerror="this.style.display='none';">`
+                    : '';
+
+                card.innerHTML = `
+                    <a href="${article.url}" class="theme-card-link" aria-label="Lire l'article : ${escapeHtml(article.titre)}" style="display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none;">
+                        ${imageHtml}
+                        <div class="article-card-body">
+                            <div class="article-card-meta">
+                                <span class="article-card-cat">${escapeHtml(article.categorie)}</span>
+                                <span class="article-card-date">📅 ${formatDate(article.date)}</span>
+                            </div>
+                            <h3 class="article-card-title">${escapeHtml(article.titre)}</h3>
+                            <p class="article-card-excerpt">${escapeHtml(article.excerpt)}</p>
+                            <span class="article-card-link">Lire la suite →</span>
+                        </div>
+                    </a>
+                `;
+                return card;
+            }
+
+            function updateCount(count) {
+                if (count === 0) {
+                    countDisplay.textContent = '';
+                } else if (count === 1) {
+                    countDisplay.textContent = '1 article trouvé';
+                } else {
+                    countDisplay.textContent = count + ' articles trouvés';
+                }
+            }
+
+            function escapeHtml(text) {
+                if (text === null || text === undefined) return '';
+                const div = document.createElement('div');
+                div.textContent = String(text);
+                return div.innerHTML;
+            }
+
+            function formatDate(dateString) {
+                if (!dateString) return '';
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return dateString;
+                return date.toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+
+            // Attacher les événements
+            searchInput.addEventListener('input', applyFilters);
+            categorySelect.addEventListener('change', applyFilters);
+
+            // Charger les articles au démarrage
+            applyFilters();
+        });
+
+        function resetArticleFilters() {
+            const searchInput = document.getElementById('articles-search');
+            const categorySelect = document.getElementById('articles-category');
+            if (searchInput) searchInput.value = '';
+            if (categorySelect) categorySelect.value = '';
+            window.location.reload();
+        }
+    </script>
+
+</body>
+</html>
