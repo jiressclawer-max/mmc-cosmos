@@ -1,0 +1,39 @@
+{
+  "site": {
+    "titre": "Consultations - MMC - Maître Morazandry Cosmos",
+    "description": "Demandez une consultation privée auprès de Maître MORAZANDRY : révélation, remède naturel ou conseil personnalisé.",
+    "derniere_mise_a_jour": "2026-09-29"
+  },
+  "types": [
+    {
+      "id": "revelation",
+      "nom": "🔮 Révélation",
+      "description": "Lecture cosmique, interprétation des cycles et guidance spirituelle.",
+      "duree": "45 minutes",
+      "prix": 50000,
+      "devise": "Ar"
+    },
+    {
+      "id": "remede",
+      "nom": "🌿 Remède naturel",
+      "description": "Diagnostic traditionnel et recommandations de plantes médicinales adaptées.",
+      "duree": "1 heure",
+      "prix": 75000,
+      "devise": "Ar"
+    },
+    {
+      "id": "conseil",
+      "nom": "💡 Conseil",
+      "description": "Consultation sur la santé, l'alimentation, l'environnement ou la philosophie de vie.",
+      "duree": "30 minutes",
+      "prix": 35000,
+      "devise": "Ar"
+    }
+  ],
+  "statuts": {
+    "en_attente": { "label": "⏳ En attente", "classe": "status-en_attente" },
+    "en_cours": { "label": "🔄 En cours", "classe": "status-en_cours" },
+    "resolue": { "label": "✅ Résolue", "classe": "status-resolue" },
+    "annulee": { "label": "❌ Annulée", "classe": "status-annulee" }
+  }
+}
