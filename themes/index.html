@@ -54,6 +54,17 @@
         }
     }
     </script>
+
+    <style>
+        /* Compteur de résultats */
+        .themes-count {
+            text-align: center;
+            color: #a89078;
+            font-size: 0.9rem;
+            margin-top: 24px;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
 
@@ -249,7 +260,7 @@
     <script src="../js/script.js"></script>
     <script src="../js/themes.js"></script>
 
-    <!-- ===== SCRIPT DE FILTRE ET COMPTEUR ===== -->
+    <!-- ===== SCRIPT LOCAL : FILTRES + COMPTEUR + CORRECTION DES LIENS ===== -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('themes-search');
@@ -258,27 +269,32 @@
             const noMessage = document.getElementById('no-themes-message');
             const countDisplay = document.getElementById('themes-count');
 
-            // Attendre que themes.js ait fini de charger
             let originalThemes = [];
 
-            const checkLoaded = setInterval(function () {
-                if (window.MMCThemes && window.MMCThemes.load) {
-                    clearInterval(checkLoaded);
+            // Charger les thèmes depuis le JSON
+            fetch('../data/themes.json')
+                .then(r => r.json())
+                .then(data => {
+                    if (data && data.themes) {
+                        originalThemes = data.themes;
+                        // Afficher tous les thèmes dès le départ
+                        applyFilters();
+                    }
+                })
+                .catch(err => {
+                    console.error('Erreur de chargement:', err);
+                    container.innerHTML = '<p class="no-themes">Impossible de charger les thèmes.</p>';
+                });
 
-                    // Recharger les thèmes via l'API globale
-                    const basePath = '../';
-                    const jsonPath = basePath + 'data/themes.json';
-
-                    fetch(jsonPath)
-                        .then(r => r.json())
-                        .then(data => {
-                            if (data && data.themes) {
-                                originalThemes = data.themes;
-                                updateCount(originalThemes.length);
-                            }
-                        });
+            // 🔧 CORRECTION : Construire le bon lien selon le contexte
+            function buildThemeLink(themeUrl) {
+                // Si l'URL commence par "themes/", on retire ce préfixe
+                // car on est DÉJÀ dans le dossier /themes/
+                if (themeUrl.startsWith('themes/')) {
+                    return themeUrl.replace(/^themes\//, '');
                 }
-            }, 200);
+                return themeUrl;
+            }
 
             function applyFilters() {
                 if (!originalThemes.length) return;
@@ -300,7 +316,7 @@
                     return true;
                 });
 
-                // Vider et remplir
+                // Vider le conteneur
                 container.innerHTML = '';
 
                 if (filtered.length === 0) {
@@ -314,6 +330,7 @@
                 // Trier par date décroissante
                 filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
 
+                // Créer les cartes
                 filtered.forEach(theme => {
                     const card = createCard(theme);
                     container.appendChild(card);
@@ -326,8 +343,14 @@
                 const card = document.createElement('article');
                 card.className = 'theme-card';
 
-                const imageHtml = theme.image
-                    ? `<img src="../${theme.image}" alt="${escapeHtml(theme.titre)}" class="theme-card-image" loading="lazy" onerror="this.style.display='none';">`
+                // 🔧 CORRECTION : retirer le préfixe "themes/" si présent
+                const correctedUrl = buildThemeLink(theme.url);
+
+                // Construire le chemin de l'image (toujours depuis la racine)
+                const imageSrc = theme.image ? '../' + theme.image : '';
+
+                const imageHtml = imageSrc
+                    ? `<img src="${imageSrc}" alt="${escapeHtml(theme.titre)}" class="theme-card-image" loading="lazy" onerror="this.style.display='none';">`
                     : '';
 
                 const hashtagsHtml = (theme.hashtags || [])
@@ -336,7 +359,7 @@
                     .join('');
 
                 card.innerHTML = `
-                    <a href="${theme.url}" class="theme-card-link" aria-label="Lire le thème : ${escapeHtml(theme.titre)}">
+                    <a href="${correctedUrl}" class="theme-card-link" aria-label="Lire le thème : ${escapeHtml(theme.titre)}">
                         ${imageHtml}
                         <div class="theme-card-header">
                             <span class="theme-badge-jour">${escapeHtml(theme.jour)}</span>
@@ -384,15 +407,12 @@
                 });
             }
 
-            // Attacher les événements
+            // Attacher les événements aux filtres
             searchInput.addEventListener('input', applyFilters);
             categorySelect.addEventListener('change', applyFilters);
-
-            // Attendre un peu que themes.js charge, puis appliquer les filtres
-            setTimeout(applyFilters, 800);
         });
 
-        // Fonction globale pour réinitialiser
+        // Fonction globale pour réinitialiser les filtres
         function resetThemeFilters() {
             const searchInput = document.getElementById('themes-search');
             const categorySelect = document.getElementById('themes-category');
@@ -401,17 +421,6 @@
             window.location.reload();
         }
     </script>
-
-    <style>
-        /* Compteur de résultats */
-        .themes-count {
-            text-align: center;
-            color: #a89078;
-            font-size: 0.9rem;
-            margin-top: 24px;
-            font-style: italic;
-        }
-    </style>
 
 </body>
 </html>
