@@ -3,18 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan du site - MMC</title>
+    <meta name="description" content="Plan du site MMC - Maître Morazandry Cosmos. Retrouvez toutes les pages : accueil, biographie, thèmes du jour.">
+    <title>Plan du site - MMC - Maître Morazandry Cosmos</title>
+    <link rel="canonical" href="https://jiressclawer-max.github.io/mmc-cosmos/sitemap.html">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container" style="padding: 60px 20px;">
-        <h1>Plan du site</h1>
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="biographie.html">Biographie</a></li>
-            <!-- Ajoutez ici les liens vers vos futures pages -->
-        </ul>
-        <p><a href="index.html">← Retour à l'accueil</a></p>
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+        <div class="exploration-glow"></div>
+    </div>
+
+    <div class="content-overlay">
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="logo">
+                    <a href="index.html" aria-label="Accueil MMC">
+                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="logo-text" style="display:none;">
+                            <span class="logo-title">MMC</span>
+                            <span class="logo-sub">Maître Morazandry Cosmos</span>
+                        </span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="biographie.html" class="nav-link">Biographie</a>
+                    <a href="themes/index.html" class="nav-link">Thèmes</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="page-banner">
+            <div class="container">
+                <h1 class="page-title">Plan du site</h1>
+                <p class="page-subtitle">Retrouvez toutes les pages de MMC</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="sitemap-grid">
+                    <div class="sitemap-block">
+                        <h2>📄 Pages principales</h2>
+                        <ul>
+                            <li><a href="index.html">Accueil</a></li>
+                            <li><a href="biographie.html">Biographie de Maître MORAZANDRY</a></li>
+                            <li><a href="sitemap.html">Plan du site</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sitemap-block">
+                        <h2>📚 Thèmes du jour</h2>
+                        <ul>
+                            <li><a href="themes/index.html">Tous les thèmes</a></li>
+                            <li><a href="themes/jour-1.html">Jour 1 – Le Néant : berceau de toute existence</a></li>
+                            <li><a href="themes/jour-2.html">Jour 2 – Le Néant n'est pas le vide</a></li>
+                            <li><a href="themes/jour-3.html">Jour 3 – La Thèse de l'Accident</a></li>
+                            <li><a href="themes/jour-4.html">Jour 4 – Le Climat Cosmique : l'ultime source</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="sitemap-xml-link">
+                    🔗 Version XML du sitemap : <a href="sitemap.xml">sitemap.xml</a>
+                </p>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="container footer-bottom">
+                <p>© 2026 MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
