@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Forum de discussion MMC - Maître Morazandry Cosmos. Échangez sur la cosmologie, la géophysique, la philosophie, la santé naturelle et la sagesse malgache.">
+    <meta name="keywords" content="forum Maître Morazandry, discussion cosmologie, débat philosophie, communauté malgache, questions réponses">
+    <meta name="author" content="Maître MORAZANDRY">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Forum - MMC - Maître Morazandry Cosmos">
+    <meta property="og:description" content="Échangez et débattez sur la cosmologie, la géophysique, la philosophie et la sagesse malgache.">
+    <meta property="og:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
+    <meta property="og:url" content="https://jiressclawer-max.github.io/mmc-cosmos/forum.html">
+    <meta property="og:site_name" content="MMC - Maître Morazandry Cosmos">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Forum - MMC">
+    <meta name="twitter:description" content="Forum de discussion de Maître MORAZANDRY.">
+    <meta name="twitter:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
+
+    <title>Forum - MMC - Maître Morazandry Cosmos</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://jiressclawer-max.github.io/mmc-cosmos/forum.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Données structurées Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "DiscussionForumPosting",
+        "name": "Forum MMC - Maître Morazandry Cosmos",
+        "description": "Forum de discussion sur la cosmologie, la géophysique, la philosophie et la sagesse malgache.",
+        "url": "https://jiressclawer-max.github.io/mmc-cosmos/forum.html",
+        "inLanguage": "fr"
+    }
+    </script>
+
+    <style>
+        /* ===== STATISTIQUES ===== */
+        .forum-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .forum-stat-card {
+            background: rgba(30, 26, 23, 0.6);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .forum-stat-label {
+            font-size: 0.7rem;
+            color: #8a7560;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .forum-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #d4a373;
+        }
+
+        /* ===== ACTIONS ===== */
+        .forum-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .forum-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .forum-filters input,
+        .forum-filters select {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(12, 10, 10, 0.8);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f0e6d8;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .forum-filters input:focus,
+        .forum-filters select:focus {
+            outline: none;
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+        }
+
+        .btn-new-topic {
+            padding: 12px 24px;
+            background: #d4a373;
+            color: #0c0a0a;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .btn-new-topic:hover {
+            background: #e5b888;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 163, 115, 0.4);
+        }
+
+        /* ===== FORMULAIRE DE CRÉATION ===== */
+        .new-topic-form {
+            display: none;
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.25);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .new-topic-form.active {
+            display: block;
+        }
+
+        .new-topic-form h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: #d4a373;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: #bfaa95;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(12, 10, 10, 0.6);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f0e6d8;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== LISTE DES SUJETS ===== */
+        .topics-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .topic-item {
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 14px;
+            padding: 18px 20px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 50px 1fr auto;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .topic-item:hover {
+            border-color: rgba(212, 163, 115, 0.4);
+            background: rgba(212, 163, 115, 0.03);
+            transform: translateX(4px);
+        }
+
+        .topic-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4a373, #8a6d3b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0c0a0a;
+            flex-shrink: 0;
+        }
+
+        .topic-content {
+            min-width: 0;
+        }
+
+        .topic-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            color: #f5e7d9;
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .topic-title:hover {
+            color: #d4a373;
+        }
+
+        .topic-pin {
+            font-size: 0.9rem;
+        }
+
+        .topic-lock {
+            font-size: 0.9rem;
+        }
+
+        .topic-preview {
+            font-size: 0.85rem;
+            color: #a89078;
+            line-height: 1.4;
+            margin: 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .topic-meta {
+            font-size: 0.75rem;
+            color: #8a7560;
+            margin-top: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .topic-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .topic-category {
+            display: inline-block;
+            background: rgba(212, 163, 115, 0.12);
+            color: #d4a373;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .topic-stats {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .topic-stat-count {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d4a373;
+        }
+
+        .topic-stat-label {
+            font-size: 0.65rem;
+            color: #8a7560;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== MODAL DE SUJET ===== */
+        .topic-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .topic-modal-overlay.active {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 60px;
+        }
+
+        .topic-modal {
+            background: linear-gradient(145deg, #1e1a17 0%, #2a2420 100%);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            padding: 0;
+            overflow: hidden;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .topic-modal-header {
+            background: rgba(20, 16, 14, 0.8);
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .topic-modal-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: #d4a373;
+            margin: 0;
+        }
+
+        .topic-modal-close {
+            background: none;
+            border: none;
+            color: #8a7560;
+            font-size: 1.6rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .topic-modal-close:hover {
+            color: #d4a373;
+        }
+
+        .topic-modal-body {
+            padding: 24px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        /* Posts du topic */
+        .post-item {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.08);
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4a373, #8a6d3b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0c0a0a;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .post-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .post-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .post-author {
+            font-weight: 600;
+            color: #f0e6d8;
+            font-size: 0.9rem;
+        }
+
+        .post-date {
+            font-size: 0.75rem;
+            color: #8a7560;
+        }
+
+        .post-text {
+            color: #bfaa95;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .post-reply-form {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(212, 163, 115, 0.08);
+        }
+
+        .post-reply-form textarea {
+            width: 100%;
+            background: rgba(12, 10, 10, 0.6);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f0e6d8;
+            font-size: 0.9rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .post-reply-form textarea:focus {
+            outline: none;
+            border-color: #d4a373;
+        }
+
+        .post-reply-form button {
+            margin-top: 8px;
+            padding: 8px 16px;
+            background: #d4a373;
+            color: #0c0a0a;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .post-reply-form button:hover {
+            background: #e5b888;
+        }
+
+        /* Aucun sujet */
+        .no-topics {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8a7560;
+        }
+
+        .no-topics-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* Toast */
+        .mmc-toast {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(30, 26, 23, 0.98);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 12px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f0e6d8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .mmc-toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mmc-toast-success { border-color: rgba(34, 197, 94, 0.4); }
+        .mmc-toast-error { border-color: rgba(239, 68, 68, 0.4); }
+
+        @media (max-width: 700px) {
+            .topic-item {
+                grid-template-columns: 40px 1fr;
+                gap: 12px;
+            }
+
+            .topic-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .topic-stats {
+                grid-column: 2;
+                flex-direction: row;
+                justify-content: flex-start;
+                min-width: 0;
+                gap: 16px;
+                margin-top: 8px;
+            }
+
+            .topic-modal-overlay.active {
+                padding-top: 20px;
+            }
+
+            .topic-modal-body {
+                max-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== FOND COSMIQUE ===== -->
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+        <div class="exploration-glow"></div>
+    </div>
+
+    <!-- ===== CONTENU ===== -->
+    <div class="content-overlay">
+
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="logo">
+                    <a href="index.html" aria-label="Accueil MMC">
+                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img"
+                             width="180" height="60" loading="eager" fetchpriority="high" decoding="async"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="logo-text" style="display:none;">
+                            <span class="logo-title">MMC</span>
+                            <span class="logo-sub">Maître Morazandry Cosmos</span>
+                        </span>
+                    </a>
+                </div>
+
+                <nav class="main-nav" aria-label="Navigation principale">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="biographie.html" class="nav-link">Biographie</a>
+                    <a href="themes/index.html" class="nav-link">Thèmes</a>
+                    <a href="articles.html" class="nav-link">Articles</a>
+                    <a href="forum.html" class="nav-link active">Forum</a>
+                    <a href="boutique.html" class="nav-link">Boutique</a>
+                    <a href="conferences.html" class="nav-link">Conférences</a>
+                    <a href="consultations.html" class="nav-link">Consultations</a>
+                    <a href="mes-commandes.html" class="nav-link" aria-label="Mes commandes">📦 Commandes</a>
+                    <a href="panier.html" class="nav-link cart-link" aria-label="Panier">🛒 <span class="cart-count">0</span></a>
+                </nav>
+
+                <button class="mobile-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Accueil</a>
+                <a href="biographie.html">Biographie</a>
+                <a href="themes/index.html">Thèmes du jour</a>
+                <a href="articles.html">Articles</a>
+                <a href="forum.html">Forum</a>
+                <a href="boutique.html">Boutique</a>
+                <a href="conferences.html">Conférences</a>
+                <a href="consultations.html">Consultations</a>
+                <a href="mes-commandes.html">📦 Mes commandes</a>
+                <a href="panier.html">🛒 Panier</a>
+            </div>
+        </header>
+
+        <!-- ===== BANNIÈRE ===== -->
+        <section class="page-banner">
+            <div class="container">
+                <h1 class="page-title">💬 Forum de discussion</h1>
+                <p class="page-subtitle">Échangez, posez vos questions et partagez vos réflexions</p>
+            </div>
+        </section>
+
+        <!-- ===== CONTENU ===== -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+
+                <!-- Statistiques -->
+                <div class="forum-stats">
+                    <div class="forum-stat-card">
+                        <div class="forum-stat-label">Sujets</div>
+                        <div class="forum-stat-value" id="stat-topics">0</div>
+                    </div>
+                    <div class="forum-stat-card">
+                        <div class="forum-stat-label">Réponses</div>
+                        <div class="forum-stat-value" id="stat-replies">0</div>
+                    </div>
+                    <div class="forum-stat-card">
+                        <div class="forum-stat-label">Membres</div>
+                        <div class="forum-stat-value" id="stat-members">0</div>
+                    </div>
+                    <div class="forum-stat-card">
+                        <div class="forum-stat-label">Aujourd'hui</div>
+                        <div class="forum-stat-value" id="stat-today">0</div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="forum-actions">
+                    <div class="forum-filters">
+                        <input type="text" id="forum-search" placeholder="🔍 Rechercher un sujet..." aria-label="Rechercher un sujet">
+                        <select id="forum-category" aria-label="Filtrer par catégorie">
+                            <option value="">📂 Toutes les catégories</option>
+                            <option value="Cosmologie">🌌 Cosmologie</option>
+                            <option value="Géophysique">🌍 Géophysique</option>
+                            <option value="Biologie">🧬 Biologie</option>
+                            <option value="Philosophie">📚 Philosophie</option>
+                            <option value="Sagesse Malgache">🇲🇬 Sagesse Malgache</option>
+                            <option value="Environnement">🌿 Environnement</option>
+                            <option value="Santé">💊 Santé naturelle</option>
+                            <option value="Autres">💡 Autres</option>
+                        </select>
+                    </div>
+                    <button class="btn-new-topic" onclick="toggleNewTopicForm()">
+                        ✏️ Nouveau sujet
+                    </button>
+                </div>
+
+                <!-- Formulaire nouveau sujet -->
+                <div class="new-topic-form" id="new-topic-form">
+                    <h2>✏️ Créer un nouveau sujet</h2>
+                    <form onsubmit="submitTopic(event)">
+                        <div class="form-group">
+                            <label for="topic-author">Votre nom <span class="required">*</span></label>
+                            <input type="text" id="topic-author" required placeholder="Ex: Rakoto Jean" maxlength="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic-category-select">Catégorie <span class="required">*</span></label>
+                            <select id="topic-category-select" required>
+                                <option value="">-- Choisir une catégorie --</option>
+                                <option value="Cosmologie">🌌 Cosmologie</option>
+                                <option value="Géophysique">🌍 Géophysique</option>
+                                <option value="Biologie">🧬 Biologie</option>
+                                <option value="Philosophie">📚 Philosophie</option>
+                                <option value="Sagesse Malgache">🇲🇬 Sagesse Malgache</option>
+                                <option value="Environnement">🌿 Environnement</option>
+                                <option value="Santé">💊 Santé naturelle</option>
+                                <option value="Autres">💡 Autres</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic-title">Titre du sujet <span class="required">*</span></label>
+                            <input type="text" id="topic-title" required placeholder="Ex: Comment comprendre le Climat Cosmique ?" maxlength="150">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic-message">Votre message <span class="required">*</span></label>
+                            <textarea id="topic-message" required placeholder="Décrivez votre question, votre réflexion ou votre sujet de discussion..." maxlength="2000"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">📩 Publier le sujet</button>
+                            <button type="button" class="btn btn-secondary" onclick="toggleNewTopicForm()">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Liste des sujets -->
+                <div id="topics-list" class="topics-list"></div>
+
+                <!-- Aucun sujet -->
+                <div id="no-topics" class="no-topics" style="display: none;">
+                    <div class="no-topics-icon">💬</div>
+                    <h2>Aucun sujet pour le moment</h2>
+                    <p>Soyez le premier à lancer une discussion !</p>
+                    <button class="btn btn-primary" onclick="toggleNewTopicForm()">✏️ Créer le premier sujet</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <h4>MMC</h4>
+                    <p>Maître Morazandry Cosmos</p>
+                    <p class="footer-sub">Penseur, Astronome et Attractionniste Malagasy</p>
+                    <p class="footer-small">26 ans de recherche à travers Madagascar</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="biographie.html">Biographie</a></li>
+                        <li><a href="themes/index.html">Thèmes du jour</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="conferences.html">Conférences</a></li>
+                        <li><a href="consultations.html">Consultations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Mon compte</h4>
+                    <ul>
+                        <li><a href="connexion.html">Connexion</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                        <li><a href="mes-commandes.html">📦 Mes commandes</a></li>
+                        <li><a href="mes-inscriptions.html">📋 Mes inscriptions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                        <li><a href="#" aria-label="Instagram">📸 Instagram</a></li>
+                        <li><a href="#" aria-label="Twitter">🐦 Twitter</a></li>
+                    </ul>
+                    <p class="footer-small">📧 contact@mmc-cosmos.com</p>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p>© <span class="current-year">2026</span> MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
+                <p>
+                    <a href="index.html">Accueil</a> ·
+                    <a href="sitemap.html">Plan du site</a> ·
+                    <a href="sitemap.xml">Sitemap XML</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ===== MODAL SUJET ===== -->
+    <div class="topic-modal-overlay" id="topic-modal" onclick="if(event.target === this) closeTopicModal()">
+        <div class="topic-modal">
+            <div class="topic-modal-header">
+                <h2 id="modal-title">Titre du sujet</h2>
+                <button class="topic-modal-close" onclick="closeTopicModal()" aria-label="Fermer">×</button>
+            </div>
+            <div class="topic-modal-body" id="modal-body">
+                <!-- Contenu rempli par JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/script.js"></script>
+
+    <!-- ===== SCRIPT DU FORUM ===== -->
+    <script>
+        const FORUM_KEY = 'mmc_forum_topics';
+        const CART_KEY = 'mmc_cart';
+
+        let allTopics = [];
+
+        /* ================================================================
+           UTILITAIRES
+           ================================================================ */
+        function getTopics() {
+            try {
+                return JSON.parse(localStorage.getItem(FORUM_KEY) || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveTopics(topics) {
+            localStorage.setItem(FORUM_KEY, JSON.stringify(topics));
+        }
+
+        function updateCartCounters() {
+            try {
+                const cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+                const total = cart.reduce((sum, item) => sum + item.quantite, 0);
+                document.querySelectorAll('.cart-count').forEach(el => {
+                    el.textContent = total;
+                    el.style.display = total > 0 ? 'inline-block' : 'none';
+                });
+            } catch (e) {}
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMin = Math.floor(diffMs / 60000);
+            const diffH = Math.floor(diffMs / 3600000);
+            const diffD = Math.floor(diffMs / 86400000);
+
+            if (diffMin < 1) return 'à l\'instant';
+            if (diffMin < 60) return `il y a ${diffMin} min`;
+            if (diffH < 24) return `il y a ${diffH} h`;
+            if (diffD < 7) return `il y a ${diffD} j`;
+            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
+        function getInitials(name) {
+            if (!name) return '?';
+            const parts = name.trim().split(/\s+/);
+            if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+            return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+        }
+
+        function showToast(message, type = 'success') {
+            document.querySelectorAll('.mmc-toast').forEach(t => t.remove());
+            const toast = document.createElement('div');
+            toast.className = 'mmc-toast mmc-toast-' + type;
+            toast.innerHTML = `<span>${type === 'success' ? '✅' : '❌'}</span><span>${escapeHtml(message)}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('visible'), 10);
+            setTimeout(() => {
+                toast.classList.remove('visible');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        /* ================================================================
+           STATISTIQUES
+           ================================================================ */
+        function updateStats(topics) {
+            const totalReplies = topics.reduce((sum, t) => sum + (t.posts ? t.posts.length - 1 : 0), 0);
+
+            // Membres uniques
+            const members = new Set();
+            topics.forEach(t => {
+                if (t.author) members.add(t.author);
+                if (t.posts) t.posts.forEach(p => { if (p.author) members.add(p.author); });
+            });
+
+            // Sujets créés aujourd'hui
+            const today = new Date().toDateString();
+            const todayCount = topics.filter(t => new Date(t.date).toDateString() === today).length;
+
+            document.getElementById('stat-topics').textContent = topics.length;
+            document.getElementById('stat-replies').textContent = totalReplies;
+            document.getElementById('stat-members').textContent = members.size;
+            document.getElementById('stat-today').textContent = todayCount;
+        }
+
+        /* ================================================================
+           AFFICHAGE DES SUJETS
+           ================================================================ */
+        function renderTopics(filtered = null) {
+            const topics = filtered || allTopics;
+            const list = document.getElementById('topics-list');
+            const noTopics = document.getElementById('no-topics');
+
+            if (topics.length === 0) {
+                list.innerHTML = '';
+                noTopics.style.display = 'block';
+                return;
+            }
+
+            noTopics.style.display = 'none';
+
+            // Trier : épinglés en premier, puis par date décroissante
+            const sorted = topics.slice().sort((a, b) => {
+                if (a.pinned && !b.pinned) return -1;
+                if (!a.pinned && b.pinned) return 1;
+                return new Date(b.date) - new Date(a.date);
+            });
+
+            list.innerHTML = '';
+
+            sorted.forEach(topic => {
+                const repliesCount = topic.posts ? Math.max(0, topic.posts.length - 1) : 0;
+                const lastPost = topic.posts && topic.posts.length > 0 ? topic.posts[topic.posts.length - 1] : null;
+
+                const item = document.createElement('div');
+                item.className = 'topic-item';
+                item.onclick = () => openTopic(topic.id);
+
+                item.innerHTML = `
+                    <div class="topic-avatar">${getInitials(topic.author)}</div>
+                    <div class="topic-content">
+                        <div class="topic-category">${escapeHtml(topic.category)}</div>
+                        <h3 class="topic-title">
+                            ${topic.pinned ? '<span class="topic-pin" title="Épinglé">📌</span>' : ''}
+                            ${topic.locked ? '<span class="topic-lock" title="Verrouillé">🔒</span>' : ''}
+                            ${escapeHtml(topic.title)}
+                        </h3>
+                        <p class="topic-preview">${escapeHtml(topic.message).substring(0, 120)}${topic.message.length > 120 ? '...' : ''}</p>
+                        <div class="topic-meta">
+                            <span class="topic-meta-item">👤 ${escapeHtml(topic.author)}</span>
+                            <span class="topic-meta-item">📅 ${formatDate(topic.date)}</span>
+                            ${lastPost ? `<span class="topic-meta-item">💬 Dernière réponse ${formatDate(lastPost.date)}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="topic-stats">
+                        <div>
+                            <div class="topic-stat-count">${repliesCount}</div>
+                            <div class="topic-stat-label">Réponses</div>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        /* ================================================================
+           CRÉATION DE SUJET
+           ================================================================ */
+        function toggleNewTopicForm() {
+            const form = document.getElementById('new-topic-form');
+            form.classList.toggle('active');
+            if (form.classList.contains('active')) {
+                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function submitTopic(event) {
+            event.preventDefault();
+
+            const author = document.getElementById('topic-author').value.trim();
+            const category = document.getElementById('topic-category-select').value;
+            const title = document.getElementById('topic-title').value.trim();
+            const message = document.getElementById('topic-message').value.trim();
+
+            if (!author || !category || !title || !message) {
+                showToast('Veuillez remplir tous les champs', 'error');
+                return;
+            }
+
+            const topic = {
+                id: 'TOPIC-' + Date.now().toString(36).toUpperCase(),
+                author: author,
+                category: category,
+                title: title,
+                message: message,
+                date: new Date().toISOString(),
+                pinned: false,
+                locked: false,
+                views: 0,
+                posts: [
+                    {
+                        id: 'POST-1',
+                        author: author,
+                        message: message,
+                        date: new Date().toISOString()
+                    }
+                ]
+            };
+
+            const topics = getTopics();
+            topics.push(topic);
+            saveTopics(topics);
+
+            allTopics = topics;
+            updateStats(topics);
+            renderTopics();
+
+            // Réinitialiser le formulaire
+            document.getElementById('topic-author').value = '';
+            document.getElementById('topic-category-select').value = '';
+            document.getElementById('topic-title').value = '';
+            document.getElementById('topic-message').value = '';
+            document.getElementById('new-topic-form').classList.remove('active');
+
+            showToast('Sujet publié avec succès !');
+        }
+
+        /* ================================================================
+           OUVERTURE D'UN SUJET
+           ================================================================ */
+        function openTopic(topicId) {
+            const topic = allTopics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            // Incrémenter les vues
+            topic.views = (topic.views || 0) + 1;
+            const topics = getTopics();
+            const idx = topics.findIndex(t => t.id === topicId);
+            if (idx !== -1) {
+                topics[idx].views = topic.views;
+                saveTopics(topics);
+            }
+
+            const modal = document.getElementById('topic-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+
+            modalTitle.textContent = topic.title;
+
+            // Posts
+            let postsHtml = topic.posts.map((post, index) => `
+                <div class="post-item">
+                    <div class="post-avatar">${getInitials(post.author)}</div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">${escapeHtml(post.author)}${index === 0 ? ' 👑 (Auteur)' : ''}</span>
+                            <span class="post-date">${formatDate(post.date)}</span>
+                        </div>
+                        <div class="post-text">${escapeHtml(post.message)}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Formulaire de réponse (si non verrouillé)
+            const replyFormHtml = !topic.locked ? `
+                <div class="post-reply-form">
+                    <input type="text" id="reply-author" placeholder="Votre nom..." style="width: 100%; margin-bottom: 8px; background: rgba(12, 10, 10, 0.6); border: 1px solid rgba(212, 163, 115, 0.2); border-radius: 8px; padding: 10px 14px; color: #f0e6d8; font-family: inherit;" maxlength="50">
+                    <textarea id="reply-message" placeholder="Votre réponse..." maxlength="2000"></textarea>
+                    <button onclick="submitReply('${topic.id}')">📩 Publier la réponse</button>
+                </div>
+            ` : `
+                <div style="text-align: center; padding: 20px; color: #8a7560; background: rgba(12, 10, 10, 0.5); border-radius: 8px; margin-top: 16px;">
+                    🔒 Ce sujet est verrouillé. Vous ne pouvez plus répondre.
+                </div>
+            `;
+
+            modalBody.innerHTML = `
+                <div style="background: rgba(20, 16, 14, 0.6); padding: 16px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <span class="topic-category">${escapeHtml(topic.category)}</span>
+                    <span style="font-size: 0.85rem; color: #8a7560;">👁️ ${topic.views || 0} vues</span>
+                    <span style="font-size: 0.85rem; color: #8a7560;">💬 ${topic.posts.length - 1} réponses</span>
+                    <span style="font-size: 0.85rem; color: #8a7560;">📅 ${formatDate(topic.date)}</span>
+                </div>
+
+                ${postsHtml}
+                ${replyFormHtml}
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTopicModal() {
+            document.getElementById('topic-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        /* ================================================================
+           RÉPONSE À UN SUJET
+           ================================================================ */
+        function submitReply(topicId) {
+            const authorInput = document.getElementById('reply-author');
+            const messageInput = document.getElementById('reply-message');
+
+            const author = authorInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (!author || !message) {
+                showToast('Veuillez remplir votre nom et votre message', 'error');
+                return;
+            }
+
+            const topics = getTopics();
+            const topic = topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            topic.posts.push({
+                id: 'POST-' + Date.now().toString(36).toUpperCase(),
+                author: author,
+                message: message,
+                date: new Date().toISOString()
+            });
+
+            saveTopics(topics);
+            allTopics = topics;
+
+            showToast('Réponse publiée !');
+            openTopic(topicId); // Recharger le modal
+            renderTopics(); // Mettre à jour la liste
+        }
+
+        /* ================================================================
+           FILTRES
+           ================================================================ */
+        function applyFilters() {
+            const search = document.getElementById('forum-search').value.toLowerCase().trim();
+            const category = document.getElementById('forum-category').value;
+
+            const filtered = allTopics.filter(topic => {
+                if (category && topic.category !== category) return false;
+                if (search) {
+                    const text = (topic.title + ' ' + topic.message + ' ' + topic.author).toLowerCase();
+                    if (!text.includes(search)) return false;
+                }
+                return true;
+            });
+
+            renderTopics(filtered);
+        }
+
+        /* ================================================================
+           INITIALISATION
+           ================================================================ */
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCounters();
+
+            allTopics = getTopics();
+            updateStats(allTopics);
+            renderTopics();
+
+            // Filtres
+            document.getElementById('forum-search').addEventListener('input', applyFilters);
+            document.getElementById('forum-category').addEventListener('change', applyFilters);
+
+            // Fermer le modal avec Échap
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeTopicModal();
+            });
+        });
+    </script>
+
+</body>
+</html>
