@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conférences de Maître MORAZANDRY - Découvrez les prochaines conférences et revivez les moments forts des événements passés. Cosmologie, géophysique, philosophie.">
+    <meta name="keywords" content="conférences Maître Morazandry, MMC, cosmologie, géophysique, philosophie malgache, événements, Madagascar">
+    <meta name="author" content="Maître MORAZANDRY">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Conférences - MMC - Maître Morazandry Cosmos">
+    <meta property="og:description" content="Découvrez les prochaines conférences et revivez les moments forts des événements passés de Maître MORAZANDRY.">
+    <meta property="og:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
+    <meta property="og:url" content="https://jiressclawer-max.github.io/mmc-cosmos/conferences.html">
+    <meta property="og:site_name" content="MMC - Maître Morazandry Cosmos">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conférences - MMC">
+    <meta name="twitter:description" content="Conférences de Maître MORAZANDRY.">
+    <meta name="twitter:image" content="https://jiressclawer-max.github.io/mmc-cosmos/images/og-image.jpg">
+
+    <title>Conférences - MMC - Maître Morazandry Cosmos</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://jiressclawer-max.github.io/mmc-cosmos/conferences.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Données structurées Schema.org Event -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Conférences de Maître MORAZANDRY",
+        "description": "Découvrez les prochaines conférences et revivez les moments forts des événements passés.",
+        "url": "https://jiressclawer-max.github.io/mmc-cosmos/conferences.html",
+        "inLanguage": "fr",
+        "organizer": {
+            "@type": "Person",
+            "name": "Maître MORAZANDRY"
+        }
+    }
+    </script>
+
+    <style>
+        /* ===== CARTES DE CONFÉRENCES ===== */
+        .conferences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .conference-card {
+            background: rgba(30, 26, 23, 0.85);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .conference-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 163, 115, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(212, 163, 115, 0.3);
+        }
+
+        .conference-past {
+            background: rgba(25, 22, 20, 0.8);
+        }
+
+        .conference-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #1a1418, #2a1f1a);
+        }
+
+        .conference-image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #d4a373;
+        }
+
+        .conference-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .conference-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .conference-badge-theme,
+        .conference-badge-date,
+        .conference-badge-participants {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .conference-badge-theme {
+            background: rgba(212, 163, 115, 0.15);
+            color: #d4a373;
+            border: 1px solid rgba(212, 163, 115, 0.25);
+        }
+
+        .conference-badge-date {
+            background: rgba(70, 130, 220, 0.15);
+            color: #6ea8e8;
+            border: 1px solid rgba(70, 130, 220, 0.25);
+        }
+
+        .conference-badge-participants {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.25);
+        }
+
+        .conference-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            color: #f5e7d9;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .conference-description {
+            color: #a89078;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .conference-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding: 14px;
+            background: rgba(12, 10, 10, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 163, 115, 0.1);
+        }
+
+        .conference-info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            color: #8a7560;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-value {
+            font-size: 0.9rem;
+            color: #f0e6d8;
+            font-weight: 500;
+        }
+
+        .info-value.price-free {
+            color: #4ade80;
+            font-weight: 700;
+        }
+
+        .info-value.price-paid {
+            color: #d4a373;
+            font-weight: 700;
+        }
+
+        .info-value.complet {
+            color: #ef4444;
+        }
+
+        /* Vidéo */
+        .conference-video {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 16px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 163, 115, 0.2);
+        }
+
+        .conference-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Galerie photos */
+        .conference-gallery {
+            margin-top: 16px;
+        }
+
+        .gallery-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: #d4a373;
+            margin-bottom: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+        }
+
+        .gallery-item {
+            display: block;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: #d4a373;
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Boutons */
+        .btn-disabled {
+            display: block;
+            text-align: center;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: not-allowed;
+            margin-top: auto;
+        }
+
+        .conference-card .btn-primary {
+            display: block;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* Filtres */
+        .conferences-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding: 20px;
+            background: rgba(30, 26, 23, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .conferences-filters input,
+        .conferences-filters select {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(12, 10, 10, 0.8);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f0e6d8;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .conferences-filters input:focus,
+        .conferences-filters select:focus {
+            outline: none;
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+        }
+
+        /* Onglets */
+        .conferences-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: rgba(30, 26, 23, 0.6);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            border-radius: 10px;
+            color: #bfaa95;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .tab-btn:hover {
+            background: rgba(212, 163, 115, 0.1);
+            color: #d4a373;
+        }
+
+        .tab-btn.active {
+            background: rgba(212, 163, 115, 0.2);
+            color: #d4a373;
+            border-color: rgba(212, 163, 115, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .no-conferences {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #8a7560;
+            padding: 40px 0;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .conferences-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .conference-info {
+                grid-template-columns: 1fr;
+            }
+
+            .conference-image {
+                height: 160px;
+            }
+
+            .tab-btn {
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== FOND COSMIQUE ===== -->
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+        <div class="exploration-glow"></div>
+    </div>
+
+    <!-- ===== CONTENU ===== -->
+    <div class="content-overlay">
+
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="logo">
+                    <a href="index.html" aria-label="Accueil MMC">
+                        <img src="images/logo.png" alt="MMC - Maître Morazandry Cosmos" class="logo-img"
+                             width="180" height="60" loading="eager" fetchpriority="high" decoding="async"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="logo-text" style="display:none;">
+                            <span class="logo-title">MMC</span>
+                            <span class="logo-sub">Maître Morazandry Cosmos</span>
+                        </span>
+                    </a>
+                </div>
+
+                <nav class="main-nav" aria-label="Navigation principale">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="biographie.html" class="nav-link">Biographie</a>
+                    <a href="themes/index.html" class="nav-link">Thèmes</a>
+                    <a href="articles.html" class="nav-link">Articles</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="boutique.html" class="nav-link">Boutique</a>
+                    <a href="conferences.html" class="nav-link active">Conférences</a>
+                    <a href="consultations.html" class="nav-link">Consultations</a>
+                    <a href="panier.html" class="nav-link cart-link" aria-label="Panier">🛒 <span class="cart-count">0</span></a>
+                </nav>
+
+                <button class="mobile-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Accueil</a>
+                <a href="biographie.html">Biographie</a>
+                <a href="themes/index.html">Thèmes du jour</a>
+                <a href="articles.html">Articles</a>
+                <a href="forum.html">Forum</a>
+                <a href="boutique.html">Boutique</a>
+                <a href="conferences.html">Conférences</a>
+                <a href="consultations.html">Consultations</a>
+                <a href="panier.html">Panier</a>
+            </div>
+        </header>
+
+        <!-- ===== BANNIÈRE ===== -->
+        <section class="page-banner">
+            <div class="container">
+                <h1 class="page-title">📅 Conférences</h1>
+                <p class="page-subtitle">Participez aux prochaines conférences ou revivez les moments forts</p>
+            </div>
+        </section>
+
+        <!-- ===== ONGLETS ===== -->
+        <section class="section" style="padding-top: 0; padding-bottom: 0;">
+            <div class="container">
+                <div class="conferences-tabs">
+                    <button class="tab-btn active" onclick="showTab('upcoming')">🔜 Conférences à venir</button>
+                    <button class="tab-btn" onclick="showTab('past')">✅ Conférences passées</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTENU ONGLET : À VENIR ===== -->
+        <section id="tab-upcoming" class="tab-content active">
+            <div class="section" style="padding-top: 0;">
+                <div class="container">
+                    <div id="upcoming-conferences" class="conferences-grid">
+                        <div class="theme-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text"></div>
+                            <div class="skeleton-text short"></div>
+                        </div>
+                        <div class="theme-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text"></div>
+                            <div class="skeleton-text short"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTENU ONGLET : PASSÉES ===== -->
+        <section id="tab-past" class="tab-content">
+            <div class="section" style="padding-top: 0;">
+                <div class="container">
+                    <div id="past-conferences" class="conferences-grid">
+                        <div class="theme-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text"></div>
+                            <div class="skeleton-text short"></div>
+                        </div>
+                        <div class="theme-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-text"></div>
+                            <div class="skeleton-text short"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== APPEL À L'ACTION ===== -->
+        <section class="section section-themes">
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title" style="margin-bottom: 16px;">🎤 Organisez une conférence</h2>
+                <p style="color: #bfaa95; margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Vous souhaitez inviter Maître MORAZANDRY dans votre établissement, association ou entreprise ?
+                </p>
+                <a href="contact.html" class="btn btn-primary">📧 Nous contacter</a>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <h4>MMC</h4>
+                    <p>Maître Morazandry Cosmos</p>
+                    <p class="footer-sub">Penseur, Astronome et Attractionniste Malagasy</p>
+                    <p class="footer-small">26 ans de recherche à travers Madagascar</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="biographie.html">Biographie</a></li>
+                        <li><a href="themes/index.html">Thèmes du jour</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="conferences.html">Conférences</a></li>
+                        <li><a href="consultations.html">Consultations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Mon compte</h4>
+                    <ul>
+                        <li><a href="connexion.html">Connexion</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                        <li><a href="mes-commandes.html">Mes commandes</a></li>
+                        <li><a href="mes-inscriptions.html">Mes inscriptions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                        <li><a href="#" aria-label="Instagram">📸 Instagram</a></li>
+                        <li><a href="#" aria-label="Twitter">🐦 Twitter</a></li>
+                    </ul>
+                    <p class="footer-small">📧 contact@mmc-cosmos.com</p>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p>© <span class="current-year">2026</span> MMC - Maître Morazandry Cosmos. Tous droits réservés.</p>
+                <p>
+                    <a href="index.html">Accueil</a> ·
+                    <a href="sitemap.html">Plan du site</a> ·
+                    <a href="sitemap.xml">Sitemap XML</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/script.js"></script>
+    <script src="js/conferences.js"></script>
+
+    <!-- ===== SCRIPT DES ONGLETS ===== -->
+    <script>
+        function showTab(tab) {
+            // Masquer tous les contenus
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            // Retirer la classe active de tous les boutons
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            // Afficher le contenu sélectionné
+            document.getElementById('tab-' + tab).classList.add('active');
+
+            // Activer le bouton correspondant
+            event.target.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
